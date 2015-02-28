@@ -61,7 +61,7 @@ class User extends CI_Controller {
 		//Beispieldaten
 		$data['saved'] = true;
 		$data['success'] = true; 
-		$data['msg'] = "<strong>Speichern erfolgreich!<strong> User XX wurde mit Passwort YY angelegt.";
+		$data['msg'] = "<strong>Speichern erfolgreich!</strong> User XX wurde mit Passwort YY angelegt.";
 		
 		//Beispieldaten
 		$hdata['username'] = "Admin";

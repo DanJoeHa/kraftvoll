@@ -61,7 +61,7 @@ class Teams extends CI_Controller {
 		//Beispieldaten
 		$data['saved'] = true;
 		$data['success'] = true; 
-		$data['msg'] = "<strong>Speichern erfolgreich!<strong> Team XX wurde mit Nr. YY angelegt.";
+		$data['msg'] = "<strong>Speichern erfolgreich!</strong> Team XX wurde mit Nr. YY angelegt.";
 		
 		//Beispieldaten
 		$hdata['username'] = "Admin";

@@ -59,7 +59,7 @@ class Spiele extends CI_Controller {
 		//Beispieldaten
 		$data['saved'] = true;
 		$data['success'] = true; 
-		$data['msg'] = "<strong>Speichern erfolgreich!<strong> Team XX wurde mit YY Sekunden eingetragen.";
+		$data['msg'] = "<strong>Speichern erfolgreich!</strong> Team XX wurde mit YY Sekunden eingetragen.";
 		
 		//Beispieldaten
 		$hdata['username'] = "Admin";
@@ -113,7 +113,7 @@ class Spiele extends CI_Controller {
 		//Beispieldaten
 		$data['saved'] = true;
 		$data['success'] = true; 
-		$data['msg'] = "<strong>Speichern erfolgreich!<strong> Das Spiel XX wurde mit YY Sekunden eingetragen.";
+		$data['msg'] = "<strong>Speichern erfolgreich!</strong> Das Spiel XX wurde mit YY Sekunden eingetragen.";
 		
 		//Beispieldaten
 		$hdata['username'] = "Admin";

@@ -5,10 +5,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html lang="de">
 	<head>
+				
+		<!-- Meta-Angaben -->
 		<meta charset="utf-8" />
-		<title>Kraftvoll</title>
-
 		<meta name="author" content="Johannes Haag" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<!-- Title -->
+		<title>Kraftvoll</title>
+		
+		<!-- Styling -->
+		<link rel="stylesheet" href="<?= base_url(); ?>/public/css/style.css" />
 		
 	</head>
 	<body>
@@ -16,20 +23,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<header>
 				
+				<!-- Banner -->
+				<picture>
+					<img src="<?= base_url(); ?>/public/img/banner_small.png" />
+				</picture>
+				
+				<div class="flexbox">
+					
+					<!-- Menuicon -->
+					<a href="#" id="menuicon" title="Menu anzeigen">&#9776;</a>
+					
+					<!-- Benutzername anzeigen -->
+					<span id="username"><?= $username ?></span>
+					
+				</div>
+				
 				<!-- Navigation -->
-				<nav>
-					<ol>
+				<nav>					
+					<ul>
 						<!-- übergreifende Menueinträge -->
 						<li>
-							<a href="<?= site_url(); ?>" title="Home">Home</a>
+							<a href="<?= site_url('start/'); ?>" title="Home">Home</a>
 						</li>
 						
 						<!-- Menueinträge Station -->
 						<li>
-							<a href="<?= site_url('station/'); ?>" title="Wertung eintragen">Wertung eintragen</a>
+							<a href="<?= site_url('spiele/WertungEintragen/'); ?>" title="Wertung eintragen">Wertung eintragen</a>
 						</li>
 						<li>
-							<a href="<?= site_url('station/TabelleAnzeigen/'); ?>" title="Tabelle ansehen">Tabelle ansehen</a>
+							<a href="<?= site_url('spiele/TabelleAnzeigen/'); ?>" title="Tabelle ansehen">Tabelle ansehen</a>
 						</li>
 						
 						<!-- Menueinträge Monitor -->
@@ -39,33 +61,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						
 						<!-- Menueinträge Turnierleitung -->
 						<li>
-							<a href="<?= site_url('team/Anlegen/'); ?>" title="Team anlegen">Team anlegen</a>
+							<a href="<?= site_url('teams/'); ?>" title="Team&uuml;bersicht">Team&uuml;bersicht</a>
 						</li>
 						<li>
-							<a href="<?= site_url('team/UebersichtAnzeigen/'); ?>" title="Team&uuml;bersicht">Team&uuml;bersicht</a>
+							<a href="<?= site_url('teams/anlegen/'); ?>" title="Team anlegen">Team anlegen</a>
 						</li>
 						<li>
-							<a href="<?= site_url('station/anlegen/'); ?>" title="Station anlegen">Station anlegen</a>
+							<a href="<?= site_url('spiele/'); ?>" title="Spiel&uuml;bersicht">Spiel&uuml;bersicht</a>
 						</li>
 						<li>
-							<a href="<?= site_url('station/uebersicht/'); ?>" title="Stations&uuml;bersicht">Stations&uuml;bersicht</a>
+							<a href="<?= site_url('spiele/anlegen/'); ?>" title="Spiel anlegen">Spiel anlegen</a>
 						</li>
 						<li>
-							<a href="<?= site_url('ergebnis/'); ?>" title="Ergebnisaufstellung">Ergebnisaufstellung</a>
+							<a href="<?= site_url('events/ergebnis/'); ?>" title="Ergebnisaufstellung">Ergebnisaufstellung</a>
+						</li>
+						<li>
+							<a href="<?= site_url('events/'); ?>" title="Event&uuml;bersicht">Event&uuml;bersicht</a>
+						</li>
+						<li>
+							<a href="<?= site_url('events/anlegen/'); ?>" title="Event anlegen">Event anlegen</a>
 						</li>
 						
-					</ol>
+						<!-- Menueinträge Admin -->
+						<li>
+							<a href="<?= site_url('user/'); ?>" title="User&uuml;bersicht">User&uuml;bersicht</a>
+						</li>
+						<li>
+							<a href="<?= site_url('user/anlegen'); ?>" title="User anlegen">User anlegen</a>
+						</li>
+						
+						<!-- Logout -->
+						<li>
+							<a href="<?= site_url('logout/'); ?>" title="Logout">Logout</a>
+						</li>
+					</ul>
 				</nav>
-				
-				<!-- Banner -->
-				<picture>
-					<source media="" src=""></source>
-					<img src="fallback_banner.png" alt="Fallback Banner Kraftvoll" />
-					<p>Kraftvoll Banner</p>
-				</picture>
 				
 			</header>
 			
 			<section>
 				
-			
+				<h1><?= $pagetitle ?></h1>

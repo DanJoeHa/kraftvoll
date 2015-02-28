@@ -1,15 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Station extends CI_Controller {
+class Logout extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
 	 *
 	 * Maps to the following URL
-	 * 		http://example.com/index.php/station
+	 * 		http://example.com/logout
 	 *	- or -
-	 * 		http://example.com/index.php/station/index
+	 * 		http://example.com/logout/index
 	 *	- or -
 	 * Since this controller is set as the default controller in
 	 * config/routes.php, it's displayed at http://example.com/
@@ -18,18 +18,15 @@ class Station extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-		$this->load->view('HTML/header');
-		$this->load->view('HTML/new_value');
+	public function index(){
+		
+		//Beispieldaten
+		$hdata['username'] = "Admin";
+		$hdata['pagetitle'] = "Logout";
+		
+		//Ausgabe
+		$this->load->view('HTML/header', $hdata);
+		$this->load->view('HTML/login');
 		$this->load->view('HTML/footer');
-	}
-	
-	public function WertungSpeichern(){
-		
-	}
-	
-	public function TabelleAnzeigen(){
-		
 	}
 }

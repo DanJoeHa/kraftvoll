@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Start extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,8 +20,13 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{			
-		$this->load->view('HTML/header');
-		$this->load->view('HTML/login');
+		//Beispieldaten
+		$hdata['username'] = "Admin";
+		$hdata['pagetitle'] = "Herzlich Willkommen bei Kraftvoll 2015";
+		
+		//Ausgabe
+		$this->load->view('HTML/header', $hdata);
+		$this->load->view('HTML/start');
 		$this->load->view('HTML/footer');
 	}
 }

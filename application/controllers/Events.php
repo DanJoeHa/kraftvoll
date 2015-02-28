@@ -50,6 +50,7 @@ class Events extends CI_Controller {
 		
 		//Beispieldaten
 		$hdata['username'] = "Admin";
+		$hdata['pagetitle'] = "Eventergebnis";
 		
 		//Ausgabe
 		$this->load->view('HTML/header', $hdata);

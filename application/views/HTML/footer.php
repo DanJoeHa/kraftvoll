@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 		</section>
 		
-		<footer>
+		<footer class="page-row">
 			&copy; 2015 Johannes Haag (Support: 0170 - 3116273)
 		</footer>
 

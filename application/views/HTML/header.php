@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</head>
 	<body>
 	
-		<header>
+		<header class="page-row">
 			
 			<!-- Banner -->
 			<picture>
@@ -98,6 +98,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 		</header>
 		
-		<section>
+		<section class="page-row page-row-expanced">
 			
 			<h1><?= $pagetitle ?></h1>

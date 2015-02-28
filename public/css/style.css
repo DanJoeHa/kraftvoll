@@ -6,9 +6,22 @@
 	box-sizing: border-box;
 }
 
+html,
+body {
+	height: 100%;
+}
+
 body{
 	font-family: Helvetica, Arial, sans-serif;
 	display: table;
+}
+
+.page-row {
+	display: table-row;
+}
+
+.page-row-expanced {
+	height: 100%;
 }
 
 a {
@@ -131,11 +144,69 @@ output {
 	background-color: rgba(255, 177, 117, .3);
 }
 
+table,
+thead,
+tbody,
+th,
+td,
+tr {
+  display: block;
+  overflow: hidden;
+}
+
+th {
+	display: none;
+}
+
+tr:nth-child(odd) {
+	background-color: rgb(200, 200, 200);
+}
+
+td{
+	padding: 1%;
+}
+
+td:before {
+  content: attr(data-label) ": ";
+  display: inline-block;
+  font-weight: bold;
+  width: 10em;
+  text-transform: capitalize;
+}
+
+@media screen and (min-width: 650px) {
+  table {
+    display: table;
+    width: 100%;
+  }
+
+  th {
+  	text-transform: capitalize;
+  }
+
+  tr {
+    display: table-row;
+  }
+
+  th, td {
+    display: table-cell;
+    padding: 6px 12px;
+    vertical-align: top;
+    text-align: left;
+  }
+
+  td:before {
+    content: "";
+    width: auto;
+  }
+}
+
 /*--------------------------------------------------*
  * 						FOOTER						*
  *--------------------------------------------------*/
 footer{
 	padding: 1%;
+	line-height: 1.5rem;
 	font-size: .8rem;
 	color: rgb(255, 255, 255);
 	background-color: rgb(0, 0, 0);

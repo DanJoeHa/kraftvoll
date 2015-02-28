@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					
 					<?php foreach($row as $key=>$value): ?>
 						
-						<th><?= $value ?></th>
+						<td data-label="<?= $key ?>"><?= $value ?></td>
 						
 					<?php endforeach; ?>
 					

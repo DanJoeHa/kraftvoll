@@ -21,12 +21,34 @@ class Login extends CI_Controller {
 	public function index(){
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['username'] = "";
 		$hdata['pagetitle'] = "Login";
 		
 		//Ausgabe
 		$this->load->view('HTML/header', $hdata);
 		$this->load->view('HTML/login');
 		$this->load->view('HTML/footer');
+	}
+	
+	
+	public function getMeIn(){
+			
+		//POST-Daten laden
+		$user = $this->input->post('username');
+		$pass = $this->input->post('password');
+		
+		//Benutzer einlogen
+		$this->load->model('Benutzer');
+		
+		if( $this->Benutzer->login($user, $pass) ){
+			
+			//Daten korrekt -> Weiterleitung auf Start	
+			header('Location: ' . site_url('start/') );
+			exit;
+		}else{
+			//Daten inkorrekt -> Login-Formular wieder anzeigen
+			$this->index();	
+		}
+		
 	}
 }

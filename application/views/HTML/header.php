@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<!-- Banner -->
 			<picture>
-				<img src="<?= base_url(); ?>/public/img/banner_small.png" />
+				<img src="<?= base_url(); ?>/public/img/banner_small.png" alt=""/>
 			</picture>
 			
 			<div class="flexbox">

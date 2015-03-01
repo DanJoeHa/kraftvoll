@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ergebnis extends CI_Model {
+class Benutzer extends CI_Model {
 	
 	/**
 	 * Username.
@@ -22,9 +22,10 @@ class Ergebnis extends CI_Model {
 	public function login( $username, $password ){
 		
 		//Dummy-Abfrage
-		if( $username == "test" && $password == "test "){
+		if( $username == "test" && $password == "test"){
 			
 			//Object in Session speichern	
+			$this->session->user = $this;
 			
 			//Login erfolgreich	
 			return true;
@@ -40,6 +41,7 @@ class Ergebnis extends CI_Model {
 	public function logout(){
 		
 		//Object aus Session löschen
+		$this->session->sess_destroy();
 		
 		//Logout erfolreich
 		return true;

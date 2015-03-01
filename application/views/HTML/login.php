@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 			
-			<?= form_open('login/'); ?>
+			<?= form_open('login/getMeIn/'); ?>
 				<label for="username">Benutzername: </label>
 				<input type="text" name="username" id="username" pattern="[a-zA-Z0-9]+" title="Der Benutzername darf nur alphanummerische Werte enthalten!" required/>
 				<label for="password">Passwort: </label>

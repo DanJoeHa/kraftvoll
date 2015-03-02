@@ -30,7 +30,25 @@ class MY_Controller extends CI_Controller {
 		if( $this->session->loggedin ){
 			$this->user = unserialize($this->session->user);
 		}
-
 		
+	}
+	
+	protected function _checkAuthorisierung() {
+
+		//hole URI-Segmente und speichere in Array
+		$uri = explode("/", uri_string());
+
+		//bestimme aufzurufende Seite (wenn keine angegeben -> login)
+		$sPage = count($uri) == 1 ? "login" : $uri[1];
+
+		//bestimme durchzufuehrende Funktion (wenn keine angegeben -> index)
+		$funktion = count($uri) <= 2 ? "index" : $uri[2];
+
+		//hole Rechte-Array aus Config zur aufgerufenen Seite
+		$rechte = $this->config->item('kf_' . $sPage);
+
+		//gib Recht zurück
+		return $rechte[$funktion][$this->user->getRole()->getRoleName()];
+
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Start extends CI_Controller {
+class Start extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -19,9 +19,9 @@ class Start extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index(){
-								
+		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['username'] = $this->user->getUsername();
 		$hdata['pagetitle'] = "Herzlich Willkommen bei Kraftvoll 2015";
 		
 		//Ausgabe

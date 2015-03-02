@@ -24,8 +24,15 @@ class Benutzer extends CI_Model {
 		//Dummy-Abfrage
 		if( $username == "test" && $password == "test"){
 			
+			//Daten in Objekt speichern
+			$this->username = $username;
+			$this->password = $password;
+			
 			//Object in Session speichern	
 			$this->save2session();
+			
+			//Flag setzen
+			$this->session->loggedin = True;
 			
 			//Login erfolgreich	
 			return true;
@@ -40,7 +47,7 @@ class Benutzer extends CI_Model {
 	 */
 	public function logout(){
 		
-		//Object aus Session löschen
+		//Session löschen
 		$this->session->sess_destroy();
 		
 		//Logout erfolreich
@@ -53,6 +60,14 @@ class Benutzer extends CI_Model {
 	
 	private function save2session(){
 		$this->session->user = serialize( $this );
+	}
+	
+	public function getUsername(){
+		return $this->username;
+	}
+	
+	public function getRole(){
+		return $this->role;
 	}
 }
 ?>	

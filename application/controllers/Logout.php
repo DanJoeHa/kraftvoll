@@ -19,20 +19,15 @@ class Logout extends MY_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index(){
-		
-		//Benutzer
-		$this->load->model('Benutzer');
-		$user = $this->session->user;
-		
-		print_r($user); exit;
-		
-		//Beispieldaten
-		$hdata['username'] = "Admin";
-		$hdata['pagetitle'] = "Logout";
-		
-		//Ausgabe
-		$this->load->view('HTML/header', $hdata);
-		$this->load->view('HTML/login');
-		$this->load->view('HTML/footer');
+				
+		if( $this->user->logout() ){
+			
+			//Daten korrekt -> Weiterleitung auf Start	
+			header('Location: ' . site_url('login/') );
+			exit;
+		}else{
+			
+			//hm... irgendwas machen
+		}
 	}
 }

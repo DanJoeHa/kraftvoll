@@ -33,12 +33,12 @@ class Login extends MY_Controller {
 	
 	
 	public function getMeIn(){
-			
-		//POST-Daten laden
-		$user = $this->input->post('username');
-		$pass = $this->input->post('password');
 		
-		if( $user->login($user, $pass) ){
+		//POST-Daten laden
+		$username = $this->input->post('username');
+		$pass = $this->input->post('password');
+				
+		if( $this->user->login($username, $pass) ){
 			
 			//Daten korrekt -> Weiterleitung auf Start	
 			header('Location: ' . site_url('start/') );

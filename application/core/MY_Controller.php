@@ -2,21 +2,17 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Controller extends CI_Controller {
-
+	
 	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
+	 * User Objekt
+	 */
+	protected $user;
+	
+	/**
+	 * Parent Controller für alle anderen Controller.
+	 * 
+	 * Der Parent Controller erstellt das User-Objekt.
+	 * 
 	 */
 	public function __construct(){
 		
@@ -25,15 +21,16 @@ class MY_Controller extends CI_Controller {
 		
 		//Klassen laden
 		$this->load->model('Benutzer');
-		$this->load->Model('Rolle');
+		$this->load->model('Rolle');
 		
-		//User Objekt initialisieren
-		$user = $this->Benutzer;
+		//User initialisieren
+		$this->user = new Benutzer();
 		
-		//Prüfe, ob User Loggedin
-		if( $this->session->user ){
-			$user = unserialize($this->session->user);
+		//Prüfe, ob User eingeloggt
+		if( $this->session->loggedin ){
+			$this->user = unserialize($this->session->user);
 		}
+
 		
 	}
 }

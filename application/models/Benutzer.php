@@ -25,7 +25,7 @@ class Benutzer extends CI_Model {
 		if( $username == "test" && $password == "test"){
 			
 			//Object in Session speichern	
-			$this->session->user = $this;
+			$this->save2session();
 			
 			//Login erfolgreich	
 			return true;
@@ -45,6 +45,14 @@ class Benutzer extends CI_Model {
 		
 		//Logout erfolreich
 		return true;
+	}
+	
+	public function __destruct(){
+		$this->save2session();
+	}
+	
+	private function save2session(){
+		$this->session->user = serialize( $this );
 	}
 }
 ?>	

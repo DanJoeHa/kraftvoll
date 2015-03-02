@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Login extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -28,6 +28,7 @@ class Login extends CI_Controller {
 		$this->load->view('HTML/header', $hdata);
 		$this->load->view('HTML/login');
 		$this->load->view('HTML/footer');
+		
 	}
 	
 	
@@ -37,15 +38,13 @@ class Login extends CI_Controller {
 		$user = $this->input->post('username');
 		$pass = $this->input->post('password');
 		
-		//Benutzer einlogen
-		$this->load->model('Benutzer');
-		
-		if( $this->Benutzer->login($user, $pass) ){
+		if( $user->login($user, $pass) ){
 			
 			//Daten korrekt -> Weiterleitung auf Start	
 			header('Location: ' . site_url('start/') );
 			exit;
 		}else{
+			
 			//Daten inkorrekt -> Login-Formular wieder anzeigen
 			$this->index();	
 		}

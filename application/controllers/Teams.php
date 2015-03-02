@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Teams extends CI_Controller {
+class Teams extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.

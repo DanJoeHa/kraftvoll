@@ -19,7 +19,7 @@ class Start extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index(){
-						
+								
 		//Beispieldaten
 		$hdata['username'] = "Admin";
 		$hdata['pagetitle'] = "Herzlich Willkommen bei Kraftvoll 2015";

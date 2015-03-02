@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Logout extends CI_Controller {
+class Logout extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -19,6 +19,12 @@ class Logout extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index(){
+		
+		//Benutzer
+		$this->load->model('Benutzer');
+		$user = $this->session->user;
+		
+		print_r($user); exit;
 		
 		//Beispieldaten
 		$hdata['username'] = "Admin";

@@ -2,7 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Monitor extends Rolle {
+	
+	public function __construct(){
+		parent::__construct();
 		
+		$this->setRoleName('Monitor');
+	}
+			
 	/**
 	 * Beste Wertungen je Station ausgeben.
 	 */
@@ -32,6 +38,22 @@ class Monitor extends Rolle {
 		
 		//Login fehlgeschlagen
 		return $return;
+	}
+
+	/**
+	 * Rechte festlegen.
+	 */
+	private function setRights(){
+		
+		//Allgemein
+		$this->rechte[ 'login' ][ 'index' ] = false;
+		$this->rechte[ 'login' ][ 'getMeIn' ] = false;
+		$this->rechte[ 'start' ][ 'index' ] = true;
+		$this->rechte[ 'logout' ][ 'index' ] = true;
+		
+		//Ergebnisausgabe
+		$this->rechte[ 'monitoring' ][ 'index' ] = true;
+
 	}
 	
 }

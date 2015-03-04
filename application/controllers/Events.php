@@ -24,7 +24,7 @@ class Events extends MY_Controller {
 		$data['rows'][0]['datum'] = "18.07.2015";
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		
 		//Ausgabe
 		$this->load->view('HTML/header', $hdata);
@@ -49,7 +49,7 @@ class Events extends MY_Controller {
 		
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Eventergebnis";
 		
 		//Ausgabe
@@ -58,13 +58,13 @@ class Events extends MY_Controller {
 		$this->load->view('HTML/footer');
 	}
 	
-	public function Anlegen(){
+	public function create(){
 			
 		//Default Value
 		$data['saved'] = false;
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		
 		//Ausgabe
 		$this->load->view('HTML/header', $hdata);
@@ -81,7 +81,7 @@ class Events extends MY_Controller {
 		$data['msg'] = "<strong>Speichern erfolgreich!</strong> Event XX wurde mit Nr. YY angelegt.";
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		
 		//Ausgabe
 		$this->load->view('HTML/header', $hdata);

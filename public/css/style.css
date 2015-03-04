@@ -50,7 +50,7 @@ img {
 
 #menuicon{
 	order: 1;
-	flex-basis: 15%;
+	flex-basis: 12%;;
 	margin-left: 1%;
 	padding: 0 1%;
 	
@@ -102,7 +102,7 @@ section{
 }
 
 h1{
-	margin-bottom: 4%;
+	margin: 4% 0;
 }
 
 label {

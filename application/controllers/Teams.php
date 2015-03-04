@@ -31,7 +31,7 @@ class Teams extends MY_Controller {
 		$data['rows'][3]['teamname'] = "DUMMY1";
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Teams";
 		
 		//Ausgabe
@@ -40,13 +40,13 @@ class Teams extends MY_Controller {
 		$this->load->view('HTML/footer');
 	}
 	
-	public function Anlegen(){
+	public function create(){
 			
 		//Default Value
 		$data['saved'] = false;
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Neues Team anlegen";
 		
 		//Ausgabe
@@ -64,7 +64,7 @@ class Teams extends MY_Controller {
 		$data['msg'] = "<strong>Speichern erfolgreich!</strong> Team XX wurde mit Nr. YY angelegt.";
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Neues Team anlegen";
 		
 		//Ausgabe, wenn keine AJAX-Call

@@ -2,6 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Station extends Monitor {
+	
+	public function __construct(){
+		parent::__construct();
+		
+		$this->setRoleName('Station');
+	}
 		
 	/**
 	 * Spielbeschreibung ausgeben
@@ -39,6 +45,17 @@ class Station extends Monitor {
 		
 		//Status zurückliefern
 		return true;
+	}
+
+	/**
+	 * Rechte festlegen.
+	 */
+	private function setRights(){
+		
+		//Wertungseintrag
+		$this->rechte[ 'spiele' ][ 'WertungEintragen' ] = true;
+		$this->rechte[ 'spiele' ][ 'TabelleAnzeigen' ] = true;
+		$this->rechte[ 'spiele' ][ 'BeschreibungAnzeigen' ] = true;
 	}
 	
 }

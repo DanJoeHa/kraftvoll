@@ -2,6 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Leitung extends Station {
+	
+	public function __construct(){
+		parent::__construct();
+		
+		$this->setRoleName('Leitung');
+	}
 		
 	/**
 	 * Event anlegen
@@ -85,6 +91,36 @@ class Leitung extends Station {
 		//Rückgabe Daten
 		return $return;
 		
+	}
+	
+	/**
+	 * Rechte festlegen.
+	 */
+	private function setRights(){
+		
+		//Spieladministration
+		$this->rechte[ 'spiele' ][ 'index' ] = true;
+		$this->rechte[ 'spiele' ][ 'create' ] = true;
+		$this->rechte[ 'spiele' ][ 'edit' ] = true;
+		$this->rechte[ 'spiele' ][ 'delete' ] = true;
+		
+		//Benutzeradministration
+		$this->rechte[ 'user' ][ 'index' ] = true;
+		$this->rechte[ 'user' ][ 'create' ] = true;
+		$this->rechte[ 'user' ][ 'edit' ] = true;
+		$this->rechte[ 'user' ][ 'delete' ] = true;
+		
+		//Eventadministration
+		$this->rechte[ 'events' ][ 'index' ] = true;
+		$this->rechte[ 'events' ][ 'create' ] = true;
+		$this->rechte[ 'events' ][ 'edit' ] = true;
+		$this->rechte[ 'events' ][ 'delete' ] = true;
+		
+		//Teamadministration
+		$this->rechte[ 'teams' ][ 'index' ] = true;
+		$this->rechte[ 'teams' ][ 'create' ] = true;
+		$this->rechte[ 'teams' ][ 'edit' ] = true;
+		$this->rechte[ 'teams' ][ 'delete' ] = true;
 	}
 	
 }

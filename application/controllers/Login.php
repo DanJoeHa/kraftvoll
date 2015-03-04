@@ -21,7 +21,7 @@ class Login extends MY_Controller {
 	public function index(){
 		
 		//Beispieldaten
-		$hdata['username'] = "";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Login";
 		
 		//Ausgabe

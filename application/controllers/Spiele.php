@@ -31,7 +31,7 @@ class Spiele extends MY_Controller {
 		$data['rows'][3]['teamname'] = "DUMMY1";
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Spiele";
 		
 		//Ausgabe
@@ -45,7 +45,7 @@ class Spiele extends MY_Controller {
 		$data['saved'] = false;
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Wertung Eintragen";
 		
 		//Ausgabe
@@ -62,12 +62,28 @@ class Spiele extends MY_Controller {
 		$data['msg'] = "<strong>Speichern erfolgreich!</strong> Team XX wurde mit YY Sekunden eingetragen.";
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Wertung Eintragen";
 		
 		//Ausgabe, wenn kein AJAX-Call
 		$this->load->view('HTML/header', $hdata);
 		$this->load->view('HTML/new_value', $data);
+		$this->load->view('HTML/footer');
+		
+	}
+	
+	public function BeschreibungAnzeigen(){
+			
+		//Beispieldaten
+		$data['description'] = "Hier folgt eine kurze Beschreibung des Spiels";
+		
+		//Beispieldaten
+		$hdata['user'] = $this->user;
+		$hdata['pagetitle'] = "Spielbeschreibung";
+		
+		//Ausgabe
+		$this->load->view('HTML/header', $hdata);
+		$this->load->view('HTML/description', $data);
 		$this->load->view('HTML/footer');
 		
 	}
@@ -84,7 +100,7 @@ class Spiele extends MY_Controller {
 		
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Tabelle";
 		
 		//Ausgabe, wenn kein AJAX-Call
@@ -93,13 +109,13 @@ class Spiele extends MY_Controller {
 		$this->load->view('HTML/footer');
 	}
 	
-	public function Anlegen(){
+	public function create(){
 		
 		//Default value
 		$data['saved'] = false;
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Spiel anlegen";
 		
 		//Ausgabe
@@ -116,7 +132,7 @@ class Spiele extends MY_Controller {
 		$data['msg'] = "<strong>Speichern erfolgreich!</strong> Das Spiel XX wurde mit YY Sekunden eingetragen.";
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Spiel anlegen";
 		
 		//Ausgabe, wenn kein AJAX-Call

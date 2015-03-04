@@ -21,7 +21,7 @@ class Start extends MY_Controller {
 	public function index(){
 		
 		//Beispieldaten
-		$hdata['username'] = $this->user->getUsername();
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Herzlich Willkommen bei Kraftvoll 2015";
 		
 		//Ausgabe

@@ -31,7 +31,7 @@ class User extends MY_Controller {
 		$data['rows'][3]['rolle'] = "Leitung";
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "User";
 		
 		//Ausgabe
@@ -40,13 +40,13 @@ class User extends MY_Controller {
 		$this->load->view('HTML/footer');
 	}
 
-	public function Anlegen(){
+	public function create(){
 			
 		//Default Value
 		$data['saved'] = false;
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Neuen User anlegen";
 		
 		//Ausgabe
@@ -64,7 +64,7 @@ class User extends MY_Controller {
 		$data['msg'] = "<strong>Speichern erfolgreich!</strong> User XX wurde mit Passwort YY angelegt.";
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Neuen User anlegen";
 		
 		//Ausgabe, wenn kein AJAX-Call

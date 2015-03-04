@@ -21,7 +21,7 @@ class Ergebnis extends MY_Controller {
 	public function index(){
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Ergebnistabelle";
 		
 		//Ausgabe

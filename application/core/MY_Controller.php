@@ -20,16 +20,23 @@ class MY_Controller extends CI_Controller {
 		parent::__construct();
 		
 		//Klassen laden
-		$this->load->model('Benutzer');
 		$this->load->model('Rolle');
-		
-		//User initialisieren
-		$this->user = new Benutzer();
+		$this->load->model('Monitor');
+		$this->load->model('Station');
+		$this->load->model('Leitung');
+		$this->load->model('Admin');
+		$this->load->model('Benutzer');
 		
 		//Prüfe, ob User eingeloggt
 		if( $this->session->loggedin ){
 			$this->user = unserialize($this->session->user);
+		}else{
+			//andernfalls Dummy-User erstellen
+			$this->user = new Benutzer();
 		}
+		
+		//Check Berechtigungen
+		$this->_checkAuthorisierung();
 		
 	}
 	
@@ -44,11 +51,11 @@ class MY_Controller extends CI_Controller {
 		//bestimme durchzufuehrende Funktion (wenn keine angegeben -> index)
 		$funktion = count($uri) <= 2 ? "index" : $uri[2];
 
-		//hole Rechte-Array aus Config zur aufgerufenen Seite
-		$rechte = $this->config->item('kf_' . $sPage);
-
-		//gib Recht zurück
-		return $rechte[$funktion][$this->user->getRole()->getRoleName()];
+		//prüfe, ob User das darf -> andernfalls 404
+		if( !$this->user->getRole()->hasRightTo( $sPage, $funktion) ){
+			show_404();
+			exit;
+		}
 
 	}
 }

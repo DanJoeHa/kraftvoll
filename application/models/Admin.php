@@ -2,6 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends Leitung {
+	
+	public function __construct(){
+		parent::__construct();
+		
+		$this->setRoleName('Admin');
+		$this->setRights();
+		
+	}
 		
 	/**
 	 * Benutzer anlegen
@@ -30,5 +38,16 @@ class Admin extends Leitung {
 		return true;
 	}
 	
+	/**
+	 * Rechte festlegen.
+	 */
+	private function setRights(){
+			
+		//Teamadministration
+		$this->rechte[ 'teams' ][ 'index' ] = true;
+		$this->rechte[ 'teams' ][ 'create' ] = true;
+		$this->rechte[ 'teams' ][ 'edit' ] = true;
+		$this->rechte[ 'teams' ][ 'delete' ] = true;
+	}
 }
 ?>	

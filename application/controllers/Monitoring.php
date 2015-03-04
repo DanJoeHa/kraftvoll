@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Monitor extends MY_Controller {
+class Monitoring extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -43,7 +43,7 @@ class Monitor extends MY_Controller {
 		$data['rows'][3]['wertung'] = "5 St&uuml;ck";
 		
 		//Beispieldaten
-		$hdata['username'] = "Admin";
+		$hdata['user'] = $this->user;
 		$hdata['pagetitle'] = "Bestleistungen";
 		
 		//Ausgabe

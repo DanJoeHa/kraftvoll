@@ -86,7 +86,7 @@ class Benutzer extends CI_Model {
 	}
 	
 	public function isAdmin(){
-		if( is_a($this->getRole(), 'Admin') ) return true;
+		if( $this->getRole()->getName() == 'Admin' ) return true;
 		return false;
 	}
 	
@@ -95,7 +95,7 @@ class Benutzer extends CI_Model {
 	}
 	
 	public function isMonitor(){
-		if( is_a($this->getRole(), 'Monitor') ) return true;
+		if( $this->getRole()->getName() == 'Monitor' ) return true;
 		return false;
 	}
 	
@@ -104,7 +104,7 @@ class Benutzer extends CI_Model {
 	}
 	
 	public function isLeitung(){
-		if( is_a($this->getRole(), 'Leitung') ) return true;
+		if( $this->getRole()->getName() == 'Leitung' ) return true;
 		return false;
 	}
 	
@@ -113,7 +113,7 @@ class Benutzer extends CI_Model {
 	}
 	
 	public function isStation(){
-		if( is_a($this->getRole(), 'Station') ) return true;
+		if( $this->getRole()->getName() == 'Station' ) return true;
 		return false;
 	}
 	

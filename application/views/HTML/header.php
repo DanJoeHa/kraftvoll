@@ -126,6 +126,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<a href="<?= site_url('logout/'); ?>" title="Logout">Logout</a>
 					</li>
 					<?php endif; ?>
+				</ul>
 			</nav>
 			
 		</header>

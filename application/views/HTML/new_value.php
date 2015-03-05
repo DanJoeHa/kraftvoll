@@ -10,6 +10,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<?php endif; ?>
 			
 			<?= form_open('spiele/WertungSpeichern/'); ?>
+			
+				<?php if( !$user->isStation() ): ?>
+				<label for="spiel">Spiel: </label>
+				<input type="text" name="spiel" id="spiel" list="spiele" required/>
+				<datalist id="spiele">
+					<option value="1">Bierkrug schubsen</option>
+					<option value="2">Hau den Lukas</option>
+				</datalist>
+				<?php endif; ?>
+				
 				<label for="team">Teamnummer: </label>
 				<input type="number" name="team" id="team" min="1" required/>
 				<label for="wertung">Wertung: </label>

@@ -6,7 +6,7 @@ class Leitung extends Station {
 	public function __construct(){
 		parent::__construct();
 		
-		$this->setRoleName('Leitung');
+		$this->setName('Leitung');
 	}
 		
 	/**
@@ -96,7 +96,10 @@ class Leitung extends Station {
 	/**
 	 * Rechte festlegen.
 	 */
-	private function setRights(){
+	protected function setRights(){
+		
+		//auch Rechte von Station
+		parent::setRights();
 		
 		//Spieladministration
 		$this->rechte[ 'spiele' ][ 'index' ] = true;

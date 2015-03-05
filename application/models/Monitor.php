@@ -6,7 +6,7 @@ class Monitor extends Rolle {
 	public function __construct(){
 		parent::__construct();
 		
-		$this->setRoleName('Monitor');
+		$this->setName('Monitor');
 	}
 			
 	/**
@@ -43,7 +43,10 @@ class Monitor extends Rolle {
 	/**
 	 * Rechte festlegen.
 	 */
-	private function setRights(){
+	protected function setRights(){
+		
+		//auch Rechte von Rolle
+		parent::setRights();
 		
 		//Allgemein
 		$this->rechte[ 'login' ][ 'index' ] = false;

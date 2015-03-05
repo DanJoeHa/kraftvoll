@@ -6,7 +6,7 @@ class Rolle extends CI_Model {
 	/**
 	 * Rollenname.
 	 */
-	protected $name = "";
+	protected $name = "Not Logged In";
 	
 	/**
 	 * Rechte der Rolle.
@@ -19,11 +19,11 @@ class Rolle extends CI_Model {
 		$this->setRights();
 	}
 	
-	public function setRoleName( $rolename ){
+	public function setName( $rolename ){
 		$this->name = $rolename;
 	}
 	
-	public function getRoleName(){
+	public function getName(){
 		return $this->name;
 	}
 	
@@ -35,7 +35,7 @@ class Rolle extends CI_Model {
 	/**
 	 * Rechte festlegen.
 	 */
-	private function setRights(){
+	protected function setRights(){
 		
 		//Allgemein
 		$this->rechte[ 'login' ][ 'index' ] = true;

@@ -6,7 +6,7 @@ class Admin extends Leitung {
 	public function __construct(){
 		parent::__construct();
 		
-		$this->setRoleName('Admin');
+		$this->setName('Admin');
 		$this->setRights();
 		
 	}
@@ -41,7 +41,10 @@ class Admin extends Leitung {
 	/**
 	 * Rechte festlegen.
 	 */
-	private function setRights(){
+	protected function setRights(){
+		
+		//auch Rechte von Leitung
+		parent::setRights();
 			
 		//Teamadministration
 		$this->rechte[ 'teams' ][ 'index' ] = true;

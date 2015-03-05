@@ -6,7 +6,7 @@ class Station extends Monitor {
 	public function __construct(){
 		parent::__construct();
 		
-		$this->setRoleName('Station');
+		$this->setName('Station');
 	}
 		
 	/**
@@ -50,10 +50,14 @@ class Station extends Monitor {
 	/**
 	 * Rechte festlegen.
 	 */
-	private function setRights(){
+	protected function setRights(){
+		
+		//auch Rechte von Monitor
+		parent::setRights();
 		
 		//Wertungseintrag
 		$this->rechte[ 'spiele' ][ 'WertungEintragen' ] = true;
+		$this->rechte[ 'spiele' ][ 'WertungSpeichern' ] = true;
 		$this->rechte[ 'spiele' ][ 'TabelleAnzeigen' ] = true;
 		$this->rechte[ 'spiele' ][ 'BeschreibungAnzeigen' ] = true;
 	}

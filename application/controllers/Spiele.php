@@ -54,22 +54,38 @@ class Spiele extends MY_Controller {
 		$this->load->view('HTML/footer');
 	}
 	
-	public function WertungSpeichern(){
+	public function WertungSpeichern($ajax = false){
+		
+		//Daten auslesen
+		$teamnr = $this->input->post('team');
+		$wertung = $this->input->post('wertung');
+		//( isset( $_POST['spiel'] ) ? $spielid = $this->input->post('spiel') : $spielid = $this->user->
+		
+		//Daten speichern
+		
 		
 		//Beispieldaten
 		$data['saved'] = true;
 		$data['success'] = true; 
 		$data['msg'] = "<strong>Speichern erfolgreich!</strong> Team XX wurde mit YY Sekunden eingetragen.";
 		
-		//Beispieldaten
-		$hdata['user'] = $this->user;
-		$hdata['pagetitle'] = "Wertung Eintragen";
+		//Rückgabeantwort, abhängig von Aufruf
+		if( $ajax ){
+			
+			
+			
+		}else{
 		
-		//Ausgabe, wenn kein AJAX-Call
-		$this->load->view('HTML/header', $hdata);
-		$this->load->view('HTML/new_value', $data);
-		$this->load->view('HTML/footer');
-		
+			//Beispieldaten
+			$hdata['user'] = $this->user;
+			$hdata['pagetitle'] = "Wertung Eintragen";
+			
+			//Ausgabe, wenn kein AJAX-Call
+			$this->load->view('HTML/header', $hdata);
+			$this->load->view('HTML/new_value', $data);
+			$this->load->view('HTML/footer');
+			
+		}
 	}
 	
 	public function BeschreibungAnzeigen(){

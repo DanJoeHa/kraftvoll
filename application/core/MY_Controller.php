@@ -44,13 +44,13 @@ class MY_Controller extends CI_Controller {
 
 		//hole URI-Segmente und speichere in Array
 		$uri = explode("/", uri_string());
-
-		//bestimme aufzurufende Seite (wenn keine angegeben -> login)
-		$sPage = count($uri) == 1 ? "login" : $uri[1];
-
+		
+		//bestimme aufzurufende Seite (wenn keine angegeben ->login)
+		$sPage = empty($uri[0]) ? "login" : $uri[0];
+		
 		//bestimme durchzufuehrende Funktion (wenn keine angegeben -> index)
-		$funktion = count($uri) <= 2 ? "index" : $uri[2];
-
+		$funktion = count($uri) <= 1 ? "index" : $uri[1];		
+		
 		//prüfe, ob User das darf -> andernfalls 404
 		if( !$this->user->getRole()->hasRightTo( $sPage, $funktion) ){
 			show_404();

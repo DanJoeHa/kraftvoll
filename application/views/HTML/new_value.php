@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-			
+			<h1><?= $pagetitle ?></h1>
 			<?php if( $saved ): ?>
 			<!-- Rückmeldung an Benutzer -->
 			<output class="<?= $success ? "success" : "failure" ?>">
@@ -15,8 +15,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<label for="spiel">Spiel: </label>
 				<input type="text" name="spiel" id="spiel" list="spiele" required/>
 				<datalist id="spiele">
-					<option value="1">Bierkrug schubsen</option>
-					<option value="2">Hau den Lukas</option>
+					<option>Bierkrug schubsen</option>
+					<option>Hau den Lukas</option>
 				</datalist>
 				<?php endif; ?>
 				

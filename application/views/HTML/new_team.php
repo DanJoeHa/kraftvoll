@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+			<h1><?= $pagetitle ?></h1>
 			<?php if( $saved ): ?>
 			<!-- Rückmeldung an Benutzer -->
 			<output class="<?= $success ? "success" : "failure" ?>">

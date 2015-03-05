@@ -18,15 +18,18 @@ class Start extends MY_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index(){
+	public function index( $ajax = false ){
 		
-		//Beispieldaten
-		$hdata['user'] = $this->user;
-		$hdata['pagetitle'] = "Herzlich Willkommen bei Kraftvoll 2015";
+		$data['user'] = $this->user;
+		$data['pagetitle'] = "Herzlich Willkommen bei Kraftvoll 2015";
 		
-		//Ausgabe
-		$this->load->view('HTML/header', $hdata);
-		$this->load->view('HTML/start');
-		$this->load->view('HTML/footer');
+		//Header nur bei HTML
+		if( !$ajax ) $this->load->view('HTML/header', $data);
+		
+		//Body immer ausgeben
+		$this->load->view('HTML/start', $data);
+		
+		//Footer nur bei HTML ausgeben
+		if( !$ajax ) $this->load->view('HTML/footer');
 	}
 }

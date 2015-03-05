@@ -40,20 +40,30 @@ class Spiele extends MY_Controller {
 		$this->load->view('HTML/footer');
 	}	
 	
-	public function WertungEintragen(){		
+	/**
+	 * Ausgabe des Formulars zum Eintragen einer neuen Wertung.
+	 * 
+	 */
+	public function WertungEintragen($ajax = false){		
 		//Default value
 		$data['saved'] = false;
+		$data['user'] = $this->user;
+		$data['pagetitle'] = "Wertung Eintragen";
 		
-		//Beispieldaten
-		$hdata['user'] = $this->user;
-		$hdata['pagetitle'] = "Wertung Eintragen";
+		//Header nur bei HTML
+		if( !$ajax ) $this->load->view('HTML/header', $data);
 		
-		//Ausgabe
-		$this->load->view('HTML/header', $hdata);
+		//Body immer ausgeben
 		$this->load->view('HTML/new_value', $data);
-		$this->load->view('HTML/footer');
+		
+		//Footer nur bei HTML ausgeben
+		if( !$ajax ) $this->load->view('HTML/footer');
 	}
 	
+	/**
+	 * Speichert die Eingaben aus dem Formular zum Eintrag einer neuen Wertung.
+	 * 
+	 */
 	public function WertungSpeichern($ajax = false){
 		
 		//Daten auslesen
@@ -64,47 +74,47 @@ class Spiele extends MY_Controller {
 		//Daten speichern
 		
 		
-		//Beispieldaten
+		//Rückgabedaten
+		$data['success'] = true;
+		$data['msg'] = "<strong>Speichern erfolgreich!</strong><br> Team $teamnr wurde mit $wertung Sekunden eingetragen.";
+		
+		//Default value
 		$data['saved'] = true;
-		$data['success'] = true; 
-		$data['msg'] = "<strong>Speichern erfolgreich!</strong> Team XX wurde mit YY Sekunden eingetragen.";
+		$data['user'] = $this->user;
+		$data['pagetitle'] = "Wertung Eintragen";
 		
-		//Rückgabeantwort, abhängig von Aufruf
-		if( $ajax ){
-			
-			
-			
-		}else{
+		//Header nur bei HTML
+		if( !$ajax ) $this->load->view('HTML/header', $data);
 		
-			//Beispieldaten
-			$hdata['user'] = $this->user;
-			$hdata['pagetitle'] = "Wertung Eintragen";
-			
-			//Ausgabe, wenn kein AJAX-Call
-			$this->load->view('HTML/header', $hdata);
-			$this->load->view('HTML/new_value', $data);
-			$this->load->view('HTML/footer');
-			
-		}
+		//Body immer ausgeben
+		$this->load->view('HTML/new_value', $data);
+		
+		//Footer nur bei HTML ausgeben
+		if( !$ajax ) $this->load->view('HTML/footer');
+
 	}
 	
-	public function BeschreibungAnzeigen(){
+	public function BeschreibungAnzeigen( $ajax = false ){
 			
 		//Beispieldaten
 		$data['description'] = "Hier folgt eine kurze Beschreibung des Spiels";
 		
-		//Beispieldaten
-		$hdata['user'] = $this->user;
-		$hdata['pagetitle'] = "Spielbeschreibung";
+		//Default value
+		$data['user'] = $this->user;
+		$data['pagetitle'] = "Spielbeschreibung";
 		
-		//Ausgabe
-		$this->load->view('HTML/header', $hdata);
+		//Header nur bei HTML
+		if( !$ajax ) $this->load->view('HTML/header', $data);
+		
+		//Body immer ausgeben
 		$this->load->view('HTML/description', $data);
-		$this->load->view('HTML/footer');
+		
+		//Footer nur bei HTML ausgeben
+		if( !$ajax ) $this->load->view('HTML/footer');
 		
 	}
 	
-	public function TabelleAnzeigen(){
+	public function TabelleAnzeigen( $ajax = false ){
 					
 		//Beispieldaten
 		$data['rows'][0]['teamnummer'] = 1;
@@ -115,14 +125,18 @@ class Spiele extends MY_Controller {
 		$data['rows'][1]['wertung'] = "3,5";
 		
 		
-		//Beispieldaten
-		$hdata['user'] = $this->user;
-		$hdata['pagetitle'] = "Tabelle";
+		//Default value
+		$data['user'] = $this->user;
+		$data['pagetitle'] = "Tabelle";
 		
-		//Ausgabe, wenn kein AJAX-Call
-		$this->load->view('HTML/header', $hdata);
+		//Header nur bei HTML
+		if( !$ajax ) $this->load->view('HTML/header', $data);
+		
+		//Body immer ausgeben
 		$this->load->view('HTML/table', $data);
-		$this->load->view('HTML/footer');
+		
+		//Footer nur bei HTML ausgeben
+		if( !$ajax ) $this->load->view('HTML/footer');
 	}
 	
 	public function create(){

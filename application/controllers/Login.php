@@ -21,18 +21,18 @@ class Login extends MY_Controller {
 	public function index(){
 		
 		//Beispieldaten
-		$hdata['user'] = $this->user;
-		$hdata['pagetitle'] = "Login";
+		$data['user'] = $this->user;
+		$data['pagetitle'] = "Login";
 		
 		//Ausgabe
-		$this->load->view('HTML/header', $hdata);
-		$this->load->view('HTML/login');
+		$this->load->view('HTML/header', $data);
+		$this->load->view('HTML/login', $data);
 		$this->load->view('HTML/footer');
 		
 	}
 	
 	
-	public function getMeIn(){
+	public function getMeIn( $ajax = false ){
 		
 		//POST-Daten laden
 		$username = $this->input->post('username');
@@ -40,9 +40,19 @@ class Login extends MY_Controller {
 				
 		if( $this->user->login($username, $pass) ){
 			
-			//Daten korrekt -> Weiterleitung auf Start	
-			header('Location: ' . site_url('start/') );
-			exit;
+			
+			if( !$ajax ){
+				//Daten korrekt -> Weiterleitung auf Start	
+				header('Location: ' . site_url('start/') );
+				exit;
+			} 
+			
+			$data['user'] = $this->user;
+			$data['pagetitle'] = "Herzlich Willkommen bei Kraftvoll 2015 (aj)";
+			
+			//Ausgabe.. mit Navigation wäre top :)
+			$this->load->view('HTML/start', $data);
+			
 		}else{
 			
 			//Daten inkorrekt -> Login-Formular wieder anzeigen

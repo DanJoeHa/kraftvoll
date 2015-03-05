@@ -18,13 +18,22 @@ class Logout extends MY_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index(){
+	public function index( $ajax = false ){
 				
 		if( $this->user->logout() ){
 			
-			//Daten korrekt -> Weiterleitung auf Start	
-			header('Location: ' . site_url('login/') );
-			exit;
+			if( !$ajax ){
+				//Rückleitung auf login	
+				header('Location: ' . site_url('login/') );
+				exit;
+			}
+			
+			//Body immer ausgeben
+			$data['pagetitle'] = "Login";
+			
+			//Ausgabe
+			$this->load->view('HTML/login', $data);
+			
 		}else{
 			
 			//hm... irgendwas machen

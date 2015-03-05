@@ -18,7 +18,7 @@ class Monitoring extends MY_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+	public function index( $ajax = false )
 	{
 		//Beispieldaten
 		$data['rows'][0]['spielnummer'] = 1;
@@ -42,13 +42,17 @@ class Monitoring extends MY_Controller {
 		$data['rows'][3]['teamname'] = "DUMMY1";
 		$data['rows'][3]['wertung'] = "5 St&uuml;ck";
 		
-		//Beispieldaten
-		$hdata['user'] = $this->user;
-		$hdata['pagetitle'] = "Bestleistungen";
+		//Default value
+		$data['user'] = $this->user;
+		$data['pagetitle'] = "Bestleistungen";
 		
-		//Ausgabe
-		$this->load->view('HTML/header', $hdata);
+		//Header nur bei HTML
+		if( !$ajax ) $this->load->view('HTML/header', $data);
+		
+		//Body immer ausgeben
 		$this->load->view('HTML/table', $data);
-		$this->load->view('HTML/footer');
+		
+		//Footer nur bei HTML ausgeben
+		if( !$ajax ) $this->load->view('HTML/footer');
 	}
 }

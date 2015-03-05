@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-			
+			<h1><?= $pagetitle ?></h1>
 			<?= form_open('user/speichern/'); ?>
 				<label for="username">Benutzername: </label>
 				<input type="text" name="username" id="username" pattern="[a-zA-Z0-9 ]+" title="Der Benutzername darf nur alphanummerische Werte enthalten!" required/>

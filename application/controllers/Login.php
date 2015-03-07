@@ -32,26 +32,17 @@ class Login extends MY_Controller {
 	}
 	
 	
-	public function getMeIn( $ajax = false ){
+	public function getMeIn( ){
 		
 		//POST-Daten laden
-		$username = $this->input->post('username');
+		$username = $this->input->post('benutzername');
 		$pass = $this->input->post('password');
 				
 		if( $this->user->login($username, $pass) ){
 			
-			
-			if( !$ajax ){
-				//Daten korrekt -> Weiterleitung auf Start	
-				header('Location: ' . site_url('start/') );
-				exit;
-			} 
-			
-			$data['user'] = $this->user;
-			$data['pagetitle'] = "Herzlich Willkommen bei Kraftvoll 2015 (aj)";
-			
-			//Ausgabe.. mit Navigation wäre top :)
-			$this->load->view('HTML/start', $data);
+			//Daten korrekt -> Weiterleitung auf Start	
+			header('Location: ' . site_url('start/') );
+			exit;
 			
 		}else{
 			

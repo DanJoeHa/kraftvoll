@@ -6,7 +6,7 @@ class Benutzer extends CI_Model {
 	/**
 	 * Username.
 	 */
-	private $username = "";
+	private $username = "Kraftvoll 2015";
 	/**
 	 * Passwort.
 	 */

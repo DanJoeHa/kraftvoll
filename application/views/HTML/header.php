@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-
 <!DOCTYPE html>
 <html lang="de">
 	<head>
@@ -15,32 +14,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<title>Kraftvoll</title>
 		
 		<!-- Styling -->
-		<link rel="stylesheet" href="<?= base_url(); ?>/public/css/style.css" />
+		<link rel="stylesheet" href="<?= base_url(); ?>/public/css/style.php" />
 		
 	</head>
 	<body>
 	
-		<header class="page-row">
-			
-			<!-- Banner -->
-			<picture>
-				<img src="<?= base_url('public/img/banner_small.png'); ?>" alt=""/>
-			</picture>
-			
-			<div class="flexbox">
-				
-				<!-- Menuicon -->
-				<a href="#" id="menuicon" title="Menu anzeigen">&#9776;</a>
-				
-				<!-- Benutzername anzeigen -->
-				<span id="username"><?= $user->getUsername(); ?></span>
-				
-			</div>
-			
-			<!-- Navigation -->
-			<nav>					
-				<ul>
-					<?php if( $user->getRole()->hasRightTo('start', 'index')): ?>
+	<!-- Navbar -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-user"></span> <?= $user->getUsername(); ?></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <?php if( $user->getRole()->hasRightTo('start', 'index')): ?>
 					<!-- übergreifende Menueinträge -->
 					<li>
 						<a href="<?= site_url('start/index/'); ?>" class="navlink" title="Home">Home</a>
@@ -55,19 +48,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php endif; ?>
 					<?php if( $user->getRole()->hasRightTo('spiele', 'TabelleAnzeigen') ): ?>
 					<li>
-						<a href="<?= site_url('spiele/TabelleAnzeigen/'); ?>" class="navlink" title="Tabelle ansehen">Tabelle ansehen</a>
+						<a href="<?= site_url('spiele/TabelleAnzeigen/'); ?>" class="navlink" title="Tabelle ansehen">Tabelle</a>
 					</li>
 					<?php endif; ?>
 					<?php if( $user->getRole()->hasRightTo('spiele', 'BeschreibungAnzeigen') ): ?>
 					<li>
-						<a href="<?= site_url('spiele/BeschreibungAnzeigen/'); ?>" class="navlink" title="Spielbeschreibung ansehen">Spielbeschreibung ansehen</a>
+						<a href="<?= site_url('spiele/BeschreibungAnzeigen/'); ?>" class="navlink" title="Spielbeschreibung ansehen">Spielbeschreibung</a>
 					</li>
 					<?php endif; ?>
 					
 					<?php if( $user->getRole()->hasRightTo('monitoring', 'index') ): ?>
 					<!-- Menueinträge Monitor -->
 					<li>
-						<a href="<?= site_url('monitoring/index/'); ?>" class="navlink" title="Bestenliste anzeigen">Bestenliste anzeigen</a>
+						<a href="<?= site_url('monitoring/index/'); ?>" class="navlink" title="Bestenliste anzeigen">Bestenliste</a>
 					</li>
 					<?php endif; ?>
 					
@@ -87,49 +80,63 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<a href="<?= site_url('teams/create/'); ?>" class="navlink" title="Team anlegen">Team anlegen</a>
 					</li>
 					<?php endif; ?>
-					<?php if( $user->getRole()->hasRightTo('spiele', 'index') ): ?>
-					<li>
-						<a href="<?= site_url('spiele/index/'); ?>" class="navlink" title="Spiel&uuml;bersicht">Spiel&uuml;bersicht</a>
-					</li>
-					<?php endif; ?>
-					<?php if( $user->getRole()->hasRightTo('spiele', 'create') ): ?>
-					<li>
-						<a href="<?= site_url('spiele/create/'); ?>" class="navlink" title="Spiel anlegen">Spiel anlegen</a>
-					</li>
-					<?php endif; ?>
-					<?php if( $user->getRole()->hasRightTo('events', 'index') ): ?>
-					<li>
-						<a href="<?= site_url('events/index/'); ?>" class="navlink" title="Event&uuml;bersicht">Event&uuml;bersicht</a>
-					</li>
-					<?php endif; ?>
-					<?php if( $user->getRole()->hasRightTo('events', 'create') ): ?>
-					<li>
-						<a href="<?= site_url('events/create/'); ?>" class="navlink" title="Event anlegen">Event anlegen</a>
-					</li>
-					<?php endif; ?>
 					
-					<?php if( $user->getRole()->hasRightTo('user', 'index') ): ?>
-					<!-- Menueinträge Admin -->
-					<li>
-						<a href="<?= site_url('user/index/'); ?>" class="navlink" title="User&uuml;bersicht">User&uuml;bersicht</a>
-					</li>
-					<?php endif; ?>
-					<?php if( $user->getRole()->hasRightTo('user', 'create') ): ?>
-					<li>
-						<a href="<?= site_url('user/create/'); ?>" class="navlink" title="User anlegen">&raquo; User anlegen</a>
+					<?php if( $user->isAdmin() || $user->isLeitung() ): ?>
+					<li class="dropdown">
+						 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administration <span class="caret"></span></a>
+              				<ul class="dropdown-menu" role="menu">
+								<?php if( $user->getRole()->hasRightTo('spiele', 'index') ): ?>
+								<li>
+									<a href="<?= site_url('spiele/index/'); ?>" class="navlink" title="Spiel&uuml;bersicht">Spiel&uuml;bersicht</a>
+								</li>
+								<?php endif; ?>
+								<?php if( $user->getRole()->hasRightTo('spiele', 'create') ): ?>
+								<li>
+									<a href="<?= site_url('spiele/create/'); ?>" class="navlink" title="Spiel anlegen">Spiel anlegen</a>
+								</li>
+								<?php endif; ?>
+								<?php if( $user->getRole()->hasRightTo('events', 'index') ): ?>
+								<li>
+									<a href="<?= site_url('events/index/'); ?>" class="navlink" title="Event&uuml;bersicht">Event&uuml;bersicht</a>
+								</li>
+								<?php endif; ?>
+								<?php if( $user->getRole()->hasRightTo('events', 'create') ): ?>
+								<li>
+									<a href="<?= site_url('events/create/'); ?>" class="navlink" title="Event anlegen">Event anlegen</a>
+								</li>
+								<?php endif; ?>
+								
+								<?php if( $user->getRole()->hasRightTo('user', 'index') ): ?>
+								<!-- Menueinträge Admin -->
+								<li>
+									<a href="<?= site_url('user/index/'); ?>" class="navlink" title="User&uuml;bersicht">User&uuml;bersicht</a>
+								</li>
+								<?php endif; ?>
+								<?php if( $user->getRole()->hasRightTo('user', 'create') ): ?>
+								<li>
+									<a href="<?= site_url('user/create/'); ?>" class="navlink" title="User anlegen">User anlegen</a>
+								</li>
+								<?php endif; ?>
+						</ul>
 					</li>
 					<?php endif; ?>
 					
 					<?php if( $user->getRole()->hasRightTo('logout', 'index') ): ?>
 					<!-- Logout -->
 					<li>
-						<a href="<?= site_url('logout/index/'); ?>" class="navlink" title="Logout">Logout</a>
+						<a href="<?= site_url('logout/index/'); ?>" title="Logout">Logout</a>
 					</li>
 					<?php endif; ?>
-				</ul>
-			</nav>
-			
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+	
+	
+	
+		<header>
+			&nbsp;			
 		</header>
 		
-		<section class="page-row page-row-expanced" id="contentbody">
-			
+		<section id="contentbody" class="container">	

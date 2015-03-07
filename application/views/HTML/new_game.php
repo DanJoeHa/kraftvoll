@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 			<h1><?= $pagetitle ?></h1>
-			<?= form_open('spiele/speichern/'); ?>
+			<?= form_open('spiele/speichern/', array('class' => 'ajaxform')); ?>
 				<label for="spielname">Spielname: </label>
 				<input type="text" name="spielname" id="spielname" pattern="[a-zA-Z0-9 ]+" title="Der Spielname darf nur alphanummerische Werte enthalten!" required/>
 				<label for="wertungsgrundlage">Wertungsgrundlage: </label>

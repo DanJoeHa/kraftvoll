@@ -1,28 +1,10 @@
 /* --------------------------------------------------- *
- * 					Navigationsmenu	
- * --------------------------------------------------- */			
-var menuicon = document.getElementById('menuicon');
-var menu = document.querySelector('nav ul');
-
-menuicon.addEventListener('click', function(){
-	
-	if( menu.classList.contains('open') ){
-		menu.classList.remove('open');
-	}else{
-		menu.classList.add('open');
-	}
-	
-}, false);
-
-/* --------------------------------------------------- *
  *	 					Body-Loader	
  * --------------------------------------------------- */
 var xmlhttp = new XMLHttpRequest();
 var contentbody = document.getElementById('contentbody');
 var navlinks = document.getElementsByClassName('navlink');
-var forms = document.getElementsByTagName('form');
-
-console.log(forms);
+var forms;
 
 //Alle Navigationslinks durchlaufen
 for(var i = 0; i < navlinks.length; i++){
@@ -32,9 +14,6 @@ for(var i = 0; i < navlinks.length; i++){
 		
 		//Standard-Handling unterbinden
 		e.preventDefault();
-		
-		//Menu zumachen
-		menu.classList.remove('open');
 		
 		//AJAX-Call abfeuern
 		xmlhttp.open("GET", this.href + "/1" , true);
@@ -47,12 +26,13 @@ findForms();
 
 //Alle Formulare durchlaufen
 function findForms(){
+	//Alle Ajax-Forms suchen
+	forms = document.getElementsByClassName('ajaxform');
+	
 	for(var i = 0; i < forms.length; i++){
 	
 		//Formularen Event-Listener hinzufügen
 		forms.item(i).addEventListener('submit', function(e){
-			
-			alert("sending...");
 			
 			//Standard-Handling unterbinden
 			e.preventDefault();
@@ -73,8 +53,7 @@ xmlhttp.onreadystatechange = function(){
     	contentbody.innerHTML = xmlhttp.responseText;
     	
     	//content auf Forms parsen
-    	forms = document.getElementsByTagName('form');
     	findForms();
-    	console.log(forms);
+
   	}
 };

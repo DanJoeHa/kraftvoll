@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</output>
 			<?php endif; ?>
 			
-			<?= form_open('teams/speichern/'); ?>
+			<?= form_open('teams/speichern/', array('class' => 'ajaxform')); ?>
 				<label for="teamname">Teamname: </label>
 				<input type="text" name="teamname" id="teamname" pattern="[a-zA-Z0-9 ]+" title="Der Teamname darf nur alphanummerische Werte enthalten!" required/>
 				<label for="teamleader">Teamleader: </label>

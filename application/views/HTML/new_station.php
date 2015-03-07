@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 			<h1><?= $pagetitle ?></h1>
-			<?= form_open('station/anlegen/'); ?>
+			<?= form_open('station/anlegen/', array('class' => 'ajaxform')); ?>
 				<label for="stationsname">Name der Station: </label>
 				<input type="text" name="stationsname" id="stationsname" pattern=".+?[\s].+?" title="Der Name der Station darf nur alphanummerische Werte enthalten!" required/>
 				<label for="bewertungsmasstab">Bewertungsma&szlig;stab: </label>

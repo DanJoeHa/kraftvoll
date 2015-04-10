@@ -11,7 +11,7 @@ body {
 
 header {
 	min-width: 100%;
-	min-height: 150px;
+	min-height: 50px;
 	
 	border-bottom: 1px solid rgb(130, 130, 130);
 	background-image: url('../img/banner_small.png');

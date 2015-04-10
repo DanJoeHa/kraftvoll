@@ -56,11 +56,10 @@ class User extends MY_Controller {
 		
 	}
 
-	public function Speichern(){	
-		
+	public function Speichern( $ajax = false ){	
+		echo "saving";
 		//Beispieldaten
-		$data['saved'] = true;
-		$data['success'] = true; 
+		$data['saved'] = $data['success'] = $this->user->create('admin', 'admin', 'admin', 1 ); 
 		$data['msg'] = "<strong>Speichern erfolgreich!</strong> User XX wurde mit Passwort YY angelegt.";
 		
 		//Beispieldaten

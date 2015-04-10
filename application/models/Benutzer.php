@@ -2,15 +2,22 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Benutzer extends CI_Model {
+
+	/**
+	 * Userid
+	 */
+	private $userid = 0;
 	
 	/**
 	 * Username.
 	 */
 	private $username = "Kraftvoll 2015";
+	
 	/**
 	 * Passwort.
 	 */
 	private $password = "";
+	
 	/**
 	 * Rolle.
 	 */
@@ -67,6 +74,28 @@ class Benutzer extends CI_Model {
 		
 		//Logout erfolreich
 		return true;
+	}
+	
+	/**
+	 * Create a new User.
+	 */
+	public function create( $username, $password, $password_wdh, $roleid){
+			
+		//Password und Wdh. auf Uebereinstimmung pruefen
+		if( $password != $password_wdh ){
+			return false;
+		}
+		
+		//Password hashen
+		$password = password_hash( $password, PASSWORD_DEFAULT);
+		
+		//User erstellen
+		if( $this->db->insert('user', array( $username, $password, $roleid) ) ){
+			return true;
+		}
+		
+		return false;
+		
 	}
 	
 	public function __destruct(){

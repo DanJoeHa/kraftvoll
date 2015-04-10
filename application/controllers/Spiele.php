@@ -159,7 +159,7 @@ class Spiele extends MY_Controller {
 		//Beispieldaten
 		$data['saved'] = true;
 		$data['success'] = true; 
-		$data['msg'] = "<strong>Speichern erfolgreich!</strong> Das Spiel XX wurde mit YY Sekunden eingetragen.";
+		$data['msg'] = "<strong>Speichern erfolgreich!</strong> Das Spiel XX wurde angelegt.";
 		
 		//Beispieldaten
 		$hdata['user'] = $this->user;

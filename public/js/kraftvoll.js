@@ -19,6 +19,9 @@ for(var i = 0; i < navlinks.length; i++){
 		xmlhttp.open("GET", this.href + "/1" , true);
 		xmlhttp.send();
 		
+		//Navigation schließen
+		
+		
 	}, false);	
 }
 

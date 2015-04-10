@@ -4,6 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Rolle extends CI_Model {
 	
 	/**
+	 * Rollen-Identifier
+	 */
+	protected $id = 0;
+	/**
 	 * Rollenname.
 	 */
 	protected $name = "Not Logged In";

@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 			<h1><?= $pagetitle ?></h1>
-			<?= form_open('user/speichern/', array('class' => 'ajaxform')); ?>
+			<?= form_open('user/save/', array('class' => 'ajaxform')); ?>
 				<label for="benutzername">Benutzername: </label>
 				<input type="text" name="benutzername" id="benutzername" pattern="[a-zA-Z0-9 ]+" title="Der Benutzername darf nur alphanummerische Werte enthalten!" required/>
 				<label for="rolle">Rolle: </label>

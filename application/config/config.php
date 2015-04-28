@@ -72,7 +72,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'german';
+$config['language']	= 'english';
 
 /*
 |--------------------------------------------------------------------------

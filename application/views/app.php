@@ -10,52 +10,53 @@
 		
 		<meta name="description" content="Die Clientanwendung für Kraftvoll" />
 		<meta name="author" content="Johannes Haag" />
-		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
-		<link rel="stylesheet" href="kraftvoll.css" />
+		<link rel="stylesheet" href="public/kraftvoll.css" />
 		
 	</head>
 
 	<body>
 		
-		<header>
+		<!-- Page Header -->
+		<header data-role="header" data-position="fixed">
 			<nav>
 				<a href="#" id="navicon" class="invisible">&equiv;</a>
 				<ul class="invisible">
-					<li class="admin leitung station registration monitor invisible"><a href="welcome">Home</a></li>
-					<li class="admin leitung station invisible"><a href="description">Spielbeschreibung</a></li>
-					<li class="admin leitung station invisible"><a href="teamwertung">Wertung eintragen</a></li>
-					<li class="admin leitung station invisible"><a href="gametable">Spieltabelle</a></li>
-					<li class="admin leitung monitor invisible"><a href="eventtable">Top-Wertungen</a></li>
-					<li class="admin leitung registration invisible"><a href="teams">Teams</a></li>
-					<li class="admin leitung registration invisible"><a href="newteam">Team registrieren</a></li>
-					<li class="admin leitung invisible"><a href="game">Spiele</a></li>
-					<li class="admin leitung invisible"><a href="newgame">Spiel hinzufügen</a></li>
-					<li class="admin leitung invisible"><a href="events">Events</a></li>
-					<li class="admin leitung invisible"><a href="newevent">Event hinzufügen</a></li>
-					<li class="admin leitung invisible"><a href="user">Benutzer</a></li>
-					<li class="admin leitung invisible"><a href="newuser">Benutzer hinzufügen</a></li>
+					<li class="admin leitung station registration monitor invisible"><a href="#welcome" data-transition="slide">Home</a></li>
+					<li class="admin leitung station invisible"><a href="#description" data-transition="slide">Spielbeschreibung</a></li>
+					<li class="admin leitung station invisible"><a href="#teamwertung" data-transition="slide">Wertung eintragen</a></li>
+					<li class="admin leitung station invisible"><a href="#gametable" data-transition="slide">Spieltabelle</a></li>
+					<li class="admin leitung monitor invisible"><a href="#eventtable" data-transition="slide">Top-Wertungen</a></li>
+					<li class="admin leitung registration invisible"><a href="#teams" data-transition="slide">Teams</a></li>
+					<li class="admin leitung registration invisible"><a href="#newteam" data-transition="slide">Team registrieren</a></li>
+					<li class="admin leitung invisible"><a href="#games" data-transition="slide">Spiele</a></li>
+					<li class="admin leitung invisible"><a href="#newgame" data-transition="slide">Spiel hinzufügen</a></li>
+					<li class="admin leitung invisible"><a href="#events" data-transition="slide">Events</a></li>
+					<li class="admin leitung invisible"><a href="#newevent" data-transition="slide">Event hinzufügen</a></li>
+					<li class="admin leitung invisible"><a href="#user" data-transition="slide">Benutzer</a></li>
+					<li class="admin leitung invisible"><a href="#newuser" data-transition="slide">Benutzer hinzufügen</a></li>
 				</ul>
 			</nav>
 		
-			<img src="img/banner_small.png" alt="" />
+			<!-- <img src="public/img/banner_small.png" alt="" /> -->
+			
+			<div id="message" class="invisible"></div>
 		</header>
 		
 		<div id="wrapper">
 			
-			<div id="message" class="invisible"></div>
-			
 			<article id="login" class="visible">
 				<h1>Login</h1>
 				<p>
-					<form action="login" method="post">
+					<form action="<?= site_url('/services/login'); ?>" method="post">
 						<label for="username">Benutzername:</label>
 						<input type="text" id="username" name="username" maxlength=25 required autofocus />
 						<label for="password">Passwort:</label>
 						<input type="password" id="password" name="password" required />
 						<input type="submit" value="anmelden" />
 					</form>
-				</p>
+				</p>				
 			</article>
 			
 			<article id="welcome" class="invisible">
@@ -130,7 +131,7 @@
 			<article id="newteam" class="invisible">
 				<h1>Team registrieren</h1>
 				<p>
-					<form action="team/new/" method="post">
+					<form action="services/createteam/" method="post">
 						<label for="teamname">Teamname:</label>
 						<input type="text" id="teamname" name="teamname" maxlength=25 required autofocus />
 						<label for="teamleader">Teamleader:</label>
@@ -166,7 +167,7 @@
 				</p>
 			</article>
 			
-			<article id="newgame"  class="invisible">
+			<article id="newgame" class="invisible">
 				<h1>Spiel anlegen</h1>
 				<p>
 					<form action="games/new/" method="post">
@@ -228,7 +229,7 @@
 			<article id="newevent" class="invisible">
 				<h1>Event anlegen</h1>
 				<p>
-					<form action="event/new/" method="post">
+					<form action="services/createevent/" method="post">
 						<label for="eventdatum">Datum:</label>
 						<input type="date" id="eventdatum" name="eventdatum" required autofocus />
 						<label for="eventspiele">Spiele wählen:</label>
@@ -267,7 +268,7 @@
 			<article id="newuser" class="invisible">
 				<h1>User anlegen</h1>
 				<p>
-					<form action="user/new/" method="post">
+					<form action="services/createuser/" method="post">
 						<label for="newuser_username">Benutzername:</label>
 						<input type="text" id="newuser_username" name="newuser_username" maxlength=25 required autofocus />
 						<label for="newuser_password">Passwort:</label>
@@ -288,6 +289,7 @@
 			</article>
 			
 			<article id="edituser" class="invisible">
+				
 				<h1>User ändern</h1>
 				<p>
 					<form action="user/edit/" method="post">
@@ -310,15 +312,18 @@
 						<input type="submit" value="speichern" />
 					</form>
 				</p>
+				
 			</article>
 			
 		</div>
-			
-		<footer>
-				&copy; Johannes Haag (<a href="tel:01703116273">0170 - 3116273</a>)
+		
+		<!-- Page Footer -->
+		<footer data-role="footer" data-position="fixed">
+			&copy; Johannes Haag (<a href="tel:01703116273">0170 3116273</a>)
 		</footer>
 		
 		<!-- JavaScript -->
-		<script src="kraftvoll.js"></script>
+		<script src="public/jquery-2.1.3.min.js"></script>
+		<script src="public/kraftvoll.js"></script>
 	</body>
 </html>

@@ -19,7 +19,7 @@
 		public function create( $name, $password, $roleid ){
 			
 			$data['name'] = $name;
-			$data['password'] = password_hash($password, PASSWORD_DEFAULT);
+			$data['password'] = md5($password);
 			$data['role'] = $roleid;
 			
 			//User speichern
@@ -33,13 +33,13 @@
 		/**
 		 * User zu angegebener Userid aus DB laden.
 		 */
-		public function load( $userid ){
+		public function load( $username ){
 			
 			//Daten aus DB abfragen
-			$query = $this->db->select();				// SELECT *
-			$query = $this->db->from('user');			// FROM user
-			$query = $this->db->where('id', $userid);	// WHERE id = $userid
-			$query = $this->db->get();					// do it
+			$query = $this->db->select();					// SELECT *
+			$query = $this->db->from('user');				// FROM user
+			$query = $this->db->where('name', $username);	// WHERE name = $username
+			$query = $this->db->get();						// do it
 			
 			//echo $this->db->last_query();
 			
@@ -94,6 +94,14 @@
 			//Fail
 			return false;
 			
+		}
+		
+		public function getPassword(){
+			return $this->password;
+		}
+		
+		public function getRole(){
+			return $this->role;
 		}
 		
 	}

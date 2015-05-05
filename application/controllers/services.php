@@ -65,6 +65,20 @@
 			
 		}
 		
+		public function getuser(){
+			
+			
+			//Beispieldaten
+			$data['values']['success'] = 1;
+			$data['values']['row1']['cell1'] = "adm_jhaag";
+			$data['values']['row1']['cell2'] = "Haag";
+			$data['values']['row1']['cell3'] = "Johannes";
+			
+			//Rückgabe via XML
+			$this->load->view('xml', $data);
+			
+		}
+		
 		public function createteam(){
 			$this->load->model('Team');
 			

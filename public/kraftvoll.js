@@ -28,7 +28,7 @@ $('form').submit(function(e){
 			if( modul == 'login' ){
 				
 				//Startseite anzeigen
-				changePageTo('welcome');
+				changePageTo('#welcome');
 				
 				//Navigationsmenü erstellen
 				$('#navicon').removeClass('invisible').addClass('visible');
@@ -39,6 +39,11 @@ $('form').submit(function(e){
 				var unit = $(response).find('unit').text();
 				$('#unit').text( unit + ":");
 				
+				//Event setzen
+				$( '#eventchooser' ).append( $('<option>', {
+					value: 1,
+					text: '17.08.2015'
+				}));
 			}
 			
 			//Formular leeren
@@ -66,9 +71,9 @@ $('#navicon').click(function(e){
 	
 	//prüfe, ob Navigationsmenü eingeblendet ist
 	if( $('nav ul').hasClass('visible') ){
-		$('nav ul').removeClass('visible').fadeOut();
+		$('nav ul').removeClass('visible').slideUp();
 	}else{
-		$('nav ul').fadeIn().addClass('visible');
+		$('nav ul').slideDown().addClass('visible');
 	}
 	
 });
@@ -98,5 +103,57 @@ function changePageTo( target ){
 	
 	//Targetmodul einblenden
 	$( target ).removeClass('invisible').addClass('visible');
+	
+	//Prüfen, ob Daten onLoad geladen werden müssen
+	if( $( target ).attr('data-onload') ){
+		
+		//Loader einblenden
+		$( '#loader' ).fadeIn();
+		
+		//Daten via AJAX anfragen
+		$.ajax({
+			url: $( target ).attr('data-onload'),
+			method: 'post'
+		}).done(function(response){
+			
+			//Success
+			if( $(response).find('success').text() == '1' ){
+				
+				//Rückgabe-Html vorbereiten
+				var output = "";
+				
+				//Tabellen-Ausgabe
+				$( response ).find( 'row' ).each( function(){
+						
+						//Zeile beginnen
+						output += "<tr>";
+						
+						$( this ).find( 'cell' ).each( function(){
+							
+							//Zellen hinzufügen
+							output += "<td>" + $( this ).text() + "</td>";
+							
+						});
+						
+						//Zeile beenden
+						output += "</tr>";
+						
+				});
+				
+				//Html ausgeben
+				$( target ).find('tbody').html( output );
+			
+			//Fail
+			}else{
+				
+				// Fehlermeldung an User geben
+				$('#message').removeClass('invisible success').addClass('visible failure').text( $(response).find('message').text() );
+			}
+			
+			//Loader ausblenden
+			$( '#loader' ).fadeOut();
+		});
+		
+	}
 	
 } 

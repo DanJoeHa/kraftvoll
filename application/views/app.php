@@ -37,6 +37,10 @@
 					<li class="admin leitung invisible"><a href="#user" data-transition="slide">Benutzer</a></li>
 					<li class="admin leitung invisible"><a href="#newuser" data-transition="slide">Benutzer hinzufügen</a></li>
 				</ul>
+				<select id="eventchooser" class="invisible admin leitung">
+					
+				</select>
+				<img src="public/img/loading.gif" id="loader" />
 			</nav>
 		
 			<div id="headerimg"> &nbsp; </div>
@@ -258,10 +262,19 @@
 				</p>
 			</article>
 			
-			<article id="user" >
+			<article id="user" data-onload="services/getuser/">
 				<h1>Userübersicht</h1>
 				<p>
-					
+					<table>
+						<thead>
+							<td>Userid</td>
+							<td>Name</td>
+							<td>Vorname</td>
+						</thead>
+						<tbody>
+							
+						</tbody>
+					</table>
 				</p>
 			</article>
 			

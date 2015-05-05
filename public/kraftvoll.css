@@ -47,6 +47,10 @@ nav ul li a{
 	text-decoration: none;
 }
 
+#loader{
+	display: none;
+}
+
 #headerimg {
 	display: block;
 	width: 100%;
@@ -84,6 +88,11 @@ footer {
 	background-color: #000000;
 }
 
+/* Überschriften */
+h1{
+	margin-bottom: 1.3rem;
+}
+
 /* Formulare */
 input, textarea, select {
 	width: 100%;
@@ -92,6 +101,15 @@ input, textarea, select {
 }
 
 label {
+	font-weight: bold;
+}
+
+/* Tabellen */
+table{
+	width: 100%;
+}
+
+thead{
 	font-weight: bold;
 }
 

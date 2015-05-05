@@ -35,11 +35,13 @@ $('form').submit(function(e){
 				var role = $(response).find('role').text();
 				$( '.' + role.toLowerCase() ).removeClass('invisible').addClass('visible');
 				
+				//Einheit setzen
+				var unit = $(response).find('unit').text();
+				$('#unit').text( unit + ":");
+				
 			}
 			
 			//Formular leeren
-			alert( $(this) );
-			alert( $( modul ).find('form') );
 			$( modul ).find('form')[0].reset();
 			
 			// Erfolgsmeldung an User geben
@@ -63,10 +65,10 @@ $('#navicon').click(function(e){
 	e.preventDefault();
 	
 	//prüfe, ob Navigationsmenü eingeblendet ist
-	if( $('nav ul').hasClass('invisible') ){
-		$('nav ul').removeClass('invisible').addClass('visible');
+	if( $('nav ul').hasClass('visible') ){
+		$('nav ul').removeClass('visible').fadeOut();
 	}else{
-		$('nav ul').addClass('invisible').removeClass('visible');
+		$('nav ul').fadeIn().addClass('visible');
 	}
 	
 });
@@ -81,7 +83,7 @@ $('nav ul li a').click(function(e){
 	changePageTo( $(this).attr('href') );
 	
 	//Navigationsmenü ausblenden
-	$('nav ul').addClass('invisible');
+	$('nav ul').removeClass('visible').fadeOut();
 	
 });
 

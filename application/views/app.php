@@ -19,7 +19,7 @@
 	<body>
 		
 		<!-- Page Header -->
-		<header data-role="header" data-position="fixed">
+		<header data-role="header">
 			<nav>
 				<a href="#" id="navicon" class="invisible">&equiv;</a>
 				<ul class="invisible">
@@ -39,7 +39,7 @@
 				</ul>
 			</nav>
 		
-			<!-- <img src="public/img/banner_small.png" alt="" /> -->
+			<div id="headerimg"> &nbsp; </div>
 			
 			<div id="message" class="invisible"></div>
 		</header>
@@ -59,34 +59,34 @@
 				</p>				
 			</article>
 			
-			<article id="welcome" class="invisible">
+			<article id="welcome" >
 				<h1>Herzlich Willkommen!</h1>
 				<p>
 					
 				</p>
 			</article>
 			
-			<article id="description" class="invisible">
+			<article id="description" >
 				<h1>Spielbeschreibung</h1>
 				<p>
 					
 				</p>
 			</article>
 			
-			<article id="teamwertung" class="invisible">
+			<article id="teamwertung" >
 				<h1>Wertung eintragen</h1>
 				<p>
 					<form action="teamwertung" method="post">
 						<label for="team">Team-Nr.:</label>
-						<input type="number" min=1 required autofocus />
-						<label for="wertung">Wertung:</label>
-						<input type="number" required />
+						<input type="number" name="team" id="team" min=1 required autofocus />
+						<label for="wertung" id="unit">Wertung:</label>
+						<input type="number" name="wertung" id="wertung" required />
 						<input type="submit" value="speichern" />
 					</form>
 				</p>
 			</article>
 			
-			<article id="gametable" class="invisible">
+			<article id="gametable" >
 				<h1>Tabelle für Spiel</h1>
 				<p>
 					<table>
@@ -103,7 +103,7 @@
 				</p>
 			</article>
 			
-			<article id="eventtable" class="invisible">
+			<article id="eventtable" >
 				<h1>Bestenleistungen</h1>
 				<p>
 					<table>
@@ -121,14 +121,14 @@
 				</p>
 			</article>
 			
-			<article id="teams" class="invisible">
+			<article id="teams" >
 				<h1>Teams</h1>
 				<p>
 					
 				</p>
 			</article>
 			
-			<article id="newteam" class="invisible">
+			<article id="newteam" >
 				<h1>Team registrieren</h1>
 				<p>
 					<form action="services/createteam/" method="post">
@@ -143,7 +143,7 @@
 				</p>
 			</article>
 			
-			<article id="editteam" class="invisible">
+			<article id="editteam" >
 				<h1>Team ändern</h1>
 				<p>
 					<form action="team/edit/" method="post">
@@ -160,14 +160,14 @@
 				</p>
 			</article>
 			
-			<article id="games" class="invisible">
+			<article id="games" >
 				<h1>Spiele</h1>
 				<p>
 					
 				</p>
 			</article>
 			
-			<article id="newgame" class="invisible">
+			<article id="newgame" >
 				<h1>Spiel anlegen</h1>
 				<p>
 					<form action="games/new/" method="post">
@@ -192,7 +192,7 @@
 				</p>
 			</article>
 			
-			<article id="editgame" class="invisible">
+			<article id="editgame" >
 				<h1>Spiel ändern</h1>
 				<p>
 					<form action="games/edit/" method="post">
@@ -219,14 +219,14 @@
 				</p>
 			</article>
 			
-			<article id="events" class="invisible">
+			<article id="events" >
 				<h1>Events</h1>
 				<p>
 					
 				</p>
 			</article>
 			
-			<article id="newevent" class="invisible">
+			<article id="newevent" >
 				<h1>Event anlegen</h1>
 				<p>
 					<form action="services/createevent/" method="post">
@@ -241,7 +241,7 @@
 				</p>
 			</article>
 			
-			<article id="editevent" class="invisible">
+			<article id="editevent" >
 				<h1>Event ändern</h1>
 				<p>
 					<form action="event/edit/" method="post">
@@ -258,14 +258,14 @@
 				</p>
 			</article>
 			
-			<article id="user" class="invisible">
+			<article id="user" >
 				<h1>Userübersicht</h1>
 				<p>
 					
 				</p>
 			</article>
 			
-			<article id="newuser" class="invisible">
+			<article id="newuser" >
 				<h1>User anlegen</h1>
 				<p>
 					<form action="services/createuser/" method="post">
@@ -288,7 +288,7 @@
 				</p>
 			</article>
 			
-			<article id="edituser" class="invisible">
+			<article id="edituser" >
 				
 				<h1>User ändern</h1>
 				<p>

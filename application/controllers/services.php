@@ -23,6 +23,7 @@
 					// Erfolgreich
 					$data['values']['success'] = 1;
 					$data['values']['role'] = $this->User->getRole()->getName();
+					$data['values']['unit'] = "Stk.";
 				}
 				
 			}

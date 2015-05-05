@@ -1,20 +1,14 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 10. Apr 2015 um 15:56
+-- Erstellungszeit: 05. Mai 2015 um 09:08
 -- Server Version: 5.6.21
 -- PHP-Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Datenbank: `usr_web168_18`
@@ -28,8 +22,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `event` (
 `id` int(11) NOT NULL,
-  `datum` date NOT NULL,
-  `active` tinyint(1) NOT NULL
+  `date` date NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -40,8 +34,18 @@ CREATE TABLE IF NOT EXISTS `event` (
 
 CREATE TABLE IF NOT EXISTS `eventgames` (
   `event` int(11) NOT NULL,
-  `game` int(11) NOT NULL,
-  `choosen` tinyint(1) NOT NULL
+  `game` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `eventteams`
+--
+
+CREATE TABLE IF NOT EXISTS `eventteams` (
+  `event` int(11) NOT NULL,
+  `team` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -65,32 +69,50 @@ CREATE TABLE IF NOT EXISTS `eventusers` (
 CREATE TABLE IF NOT EXISTS `game` (
 `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `description` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `description` text,
+  `measurement` varchar(10) NOT NULL,
+  `order` varchar(4) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+
+--
+-- Daten für Tabelle `game`
+--
+
+INSERT INTO `game` (`id`, `name`, `description`, `measurement`, `order`) VALUES
+(11, 'Schlammparcour', 'lalla', 'Zeit', 'ASC'),
+(13, 'Schlammparcour', 'lalla', 'Zeit', 'ASC'),
+(15, 'Schlammparcour', 'lalla', 'Zeit', 'ASC'),
+(17, 'Schlammparcour', 'lalla', 'Zeit', 'ASC'),
+(19, 'Schlammparcour', 'lalla', 'Zeit', 'ASC'),
+(21, 'Schlammparcour', 'lalla', 'Zeit', 'ASC'),
+(23, 'Schlammparcour', 'lalla', 'Zeit', 'ASC'),
+(25, 'Schlammparcour', 'lalla', 'Zeit', 'ASC'),
+(27, 'Schlammparcour', 'lalla', 'Zeit', 'ASC'),
+(29, 'Schlammparcour', 'lalla', 'Zeit', 'ASC'),
+(31, 'Schlammparcour', 'lalla', 'Zeit', 'ASC');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `result`
+-- Tabellenstruktur für Tabelle `results`
 --
 
-CREATE TABLE IF NOT EXISTS `result` (
-  `event` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `results` (
   `game` int(11) NOT NULL,
   `team` int(11) NOT NULL,
-  `value` int(11) NOT NULL
+  `event` int(11) NOT NULL,
+  `value` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- Tabellenstruktur für Tabelle `right`
+-- Daten für Tabelle `results`
 --
 
-CREATE TABLE IF NOT EXISTS `right` (
-`id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `results` (`game`, `team`, `event`, `value`) VALUES
+(24, 19, 22, 5),
+(26, 21, 23, 15),
+(28, 23, 24, 15),
+(30, 25, 25, 15);
 
 -- --------------------------------------------------------
 
@@ -101,19 +123,18 @@ CREATE TABLE IF NOT EXISTS `right` (
 CREATE TABLE IF NOT EXISTS `role` (
 `id` int(11) NOT NULL,
   `name` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Tabellenstruktur für Tabelle `rolerights`
+-- Daten für Tabelle `role`
 --
 
-CREATE TABLE IF NOT EXISTS `rolerights` (
-  `role` int(11) NOT NULL,
-  `right` int(11) NOT NULL,
-  `value` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `role` (`id`, `name`) VALUES
+(1, 'Admin'),
+(2, 'Leitung'),
+(3, 'Registration'),
+(4, 'Station'),
+(5, 'Monitor');
 
 -- --------------------------------------------------------
 
@@ -124,7 +145,9 @@ CREATE TABLE IF NOT EXISTS `rolerights` (
 CREATE TABLE IF NOT EXISTS `team` (
 `id` int(11) NOT NULL,
   `event` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL
+  `name` varchar(50) NOT NULL,
+  `leader` varchar(25) NOT NULL,
+  `member` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -135,10 +158,19 @@ CREATE TABLE IF NOT EXISTS `team` (
 
 CREATE TABLE IF NOT EXISTS `user` (
 `id` int(11) NOT NULL,
-  `username` varchar(25) NOT NULL,
-  `pass` varchar(250) NOT NULL,
-  `rolle` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(25) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Daten für Tabelle `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `password`, `role`) VALUES
+(1, 'adm_jhaag', 'bc441fb95c5aabeee28a0ed4d85f68e7', 1),
+(2, 'ltg_jhaag', 'b516bcbe29c82c4019a696137bc48b95', 2),
+(3, 'reg_jhaag', '53dca81fbdbbf113638cbbba5c0912c3', 3);
 
 --
 -- Indizes der exportierten Tabellen
@@ -157,6 +189,12 @@ ALTER TABLE `eventgames`
  ADD PRIMARY KEY (`event`,`game`);
 
 --
+-- Indizes für die Tabelle `eventteams`
+--
+ALTER TABLE `eventteams`
+ ADD PRIMARY KEY (`event`,`team`);
+
+--
 -- Indizes für die Tabelle `eventusers`
 --
 ALTER TABLE `eventusers`
@@ -169,28 +207,16 @@ ALTER TABLE `game`
  ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `result`
+-- Indizes für die Tabelle `results`
 --
-ALTER TABLE `result`
- ADD PRIMARY KEY (`event`,`game`,`team`);
-
---
--- Indizes für die Tabelle `right`
---
-ALTER TABLE `right`
- ADD PRIMARY KEY (`id`);
+ALTER TABLE `results`
+ ADD PRIMARY KEY (`game`,`team`,`event`);
 
 --
 -- Indizes für die Tabelle `role`
 --
 ALTER TABLE `role`
  ADD PRIMARY KEY (`id`);
-
---
--- Indizes für die Tabelle `rolerights`
---
-ALTER TABLE `rolerights`
- ADD PRIMARY KEY (`role`,`right`);
 
 --
 -- Indizes für die Tabelle `team`
@@ -202,7 +228,7 @@ ALTER TABLE `team`
 -- Indizes für die Tabelle `user`
 --
 ALTER TABLE `user`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `username` (`username`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `username` (`name`);
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
@@ -217,17 +243,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT für Tabelle `game`
 --
 ALTER TABLE `game`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT für Tabelle `right`
---
-ALTER TABLE `right`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT für Tabelle `role`
 --
 ALTER TABLE `role`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT für Tabelle `team`
 --
@@ -237,7 +258,4 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;

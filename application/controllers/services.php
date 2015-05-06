@@ -3,6 +3,9 @@
 	
 	class Services extends CI_Controller{
 		
+		/**
+		 * Benutzer einloggen und alle relevanten Daten als XML zurückliefern.
+		 */
 		public function login(){
 			$this->load->model('User');
 			$this->load->model('Role');
@@ -20,10 +23,47 @@
 				// prüfe Passwort
 				if( md5( $password ) === $this->User->getPassword() ){
 					
+					$success = 1;
+					
+					// hole aktives Event
+					$this->load->model('Event');
+					if( $this->Event->getActive() ){
+							
+						// prüfe Rolle auf Station
+						if( $this->User->getRole()->getName() == "Station" ){
+								
+							$success = 0;
+							
+							// prüfe, ob User dem aktiven Event zugeordnet ist
+							$this->Event->loadUser();
+							foreach( $this->Event->user[ $this->Event->getId() ] as $user ){
+									
+								// User gefunden	
+								if( $user['userid'] == $this->User->getId() ){
+									
+									// da Station, zugeordnetes Spiel laden
+									$this->load->model('Game');
+									$this->Game->load( $user['gameid'] );
+									$data['values']['game']['description'] = $this->Game->getDescription();
+									$data['values']['game']['id'] = $this->Game->getId();
+									$data['values']['game']['unit'] = $this->Game->getUnit();
+										
+									$success = 1;									
+									break;
+								}
+							}
+							
+						}
+						
+					}
+					
 					// Erfolgreich
-					$data['values']['success'] = 1;
-					$data['values']['role'] = $this->User->getRole()->getName();
-					$data['values']['unit'] = "Stk.";
+					if( $success ){
+						$data['values']['success'] = 1;
+						$data['values']['role'] = $this->User->getRole()->getName();
+						$data['values']['activeevent']['id'] = $this->Event->getId();
+						$data['values']['activeevent']['description'] = $this->Event->getDescription();
+					}
 				}
 				
 			}
@@ -121,7 +161,10 @@
 				$data['values']['success'] = 1;
 				$data['values']['message'] = "Event erfolgreich erstellt.";
 				
-				//TODO: spiele hinzufügen
+				// spiele hinzufügen
+				foreach( $spiele as $spielid ){
+					$this->Event->addGame( $spielid );
+				}
 			}
 			
 			//Rückgabe via XML

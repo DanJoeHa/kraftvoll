@@ -28,23 +28,9 @@ $('form').submit(function(e){
 			//wenn Login-Form
 			if( modul == 'login' ){
 				
-				//Startseite anzeigen
-				changePageTo('#welcome');
+				// Antwort verarbeiten
+				process_response_login( response );
 				
-				//Navigationsmenü erstellen
-				$('#navicon').removeClass('invisible').addClass('visible');
-				var role = $(response).find('role').text();
-				$( '.' + role.toLowerCase() ).removeClass('invisible').addClass('visible');
-				
-				//Einheit setzen
-				var unit = $(response).find('unit').text();
-				$('#unit').text( unit + ":");
-				
-				//Event setzen
-				$( '#eventchooser' ).append( $('<option>', {
-					value: 1,
-					text: '17.08.2015'
-				}));
 			}
 			
 			//Formular leeren
@@ -146,7 +132,7 @@ function changePageTo( target ){
 							
 					});
 					
-					//Html ausgeben
+					//Zeilen ausgeben
 					$( target ).find('tbody').html( output );	
 				}
 				
@@ -155,8 +141,11 @@ function changePageTo( target ){
 					
 					$( response ).find( 'options' ).each(function( ){
 						
-						//Optionen einfügen
-						$( target ).find( 'select' ).append( new Option( $( this ).find('name').text(), $( this ).find('id').text() ) );
+						$( response ).find( 'option' ).each(function( ){
+							
+							//Optionen einfügen
+							$( target ).find( 'select' ).append( new Option( $( this ).find('name').text(), $( this ).find('id').text() ) );
+						});
 					});
 					
 				}
@@ -176,3 +165,33 @@ function changePageTo( target ){
 	}
 	
 } 
+
+function process_response_login( response ){
+	
+	//Startseite anzeigen
+	changePageTo('#welcome');
+	
+	//Navigationsmenü erstellen
+	$('#navicon').removeClass('invisible').addClass('visible');
+	var role = $(response).find('role').text();
+	$( '.' + role.toLowerCase() ).removeClass('invisible').addClass('visible');
+	
+	//Spiel-Einheit setzen
+	var unit = $(response).find('game').find('unit').text();
+	$('#unit').text( unit + ":");
+	
+	//Spiel-Beschreibung setzen
+	var desc = $( response ).find('game').find('description').text();
+	$('#description').find('p').html( desc );
+	
+	//Aktives Event setzen
+	$( '#eventchooser' ).append( $('<option>', {
+		value: 1,
+		text: '17.08.2015'
+	}));
+	
+	//Aktives Event Beschreibung setzen
+	desc = $( response ).find('activeevent').find('description').text();
+	$( '#welcome' ).find('p').html( desc );
+	
+}

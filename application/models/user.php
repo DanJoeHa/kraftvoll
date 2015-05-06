@@ -104,6 +104,10 @@
 			return $this->role;
 		}
 		
+		public function getId(){
+			return $this->id;
+		}
+		
 	}
 	
 ?>

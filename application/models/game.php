@@ -157,6 +157,17 @@
 			return false;
 		}
 		
+		public function getDescription(){
+			return $this->description;
+		}
+		
+		public function getId(){
+			return $this->id;
+		}
+		
+		public function getUnit(){
+			return $this->measurement;
+		}		
 	}
 	
 ?>

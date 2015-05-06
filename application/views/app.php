@@ -248,8 +248,7 @@
 						<label for="eventdatum">Datum:</label>
 						<input type="date" id="eventdatum" name="eventdatum" required autofocus />
 						<label for="eventspiele">Spiele wählen:</label>
-						<select id="eventspiele" name="eventspiele" multiple>
-							<option></option>
+						<select id="eventspiele" name="eventspiele[]" multiple>
 						</select>
 						<input type="submit" value="speichern" />
 					</form>

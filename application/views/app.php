@@ -241,7 +241,7 @@
 				</p>
 			</article>
 			
-			<article id="newevent" >
+			<article id="newevent" data-onload="services/getgames/">
 				<h1>Event anlegen</h1>
 				<p>
 					<form action="services/createevent/" method="post">

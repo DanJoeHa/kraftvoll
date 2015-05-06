@@ -70,6 +70,7 @@
 			
 			//Beispieldaten
 			$data['values']['success'] = 1;
+			$data['values']['output'] = "table";
 			$data['values']['row1']['cell1'] = "adm_jhaag";
 			$data['values']['row1']['cell2'] = "Haag";
 			$data['values']['row1']['cell3'] = "Johannes";
@@ -151,12 +152,19 @@
 		}
 		
 		public function getgames(){
+			$this->load->model('Game');
 			
-			//Beispieldaten
-			$data['values']['success'] = 1;
-			$data['values']['row1']['cell1'] = "Kletterturm";
-			$data['values']['row1']['cell2'] = "Zeit";
-			$data['values']['row1']['cell3'] = "DESC";
+			// Rückgabedaten Defaultwerte festlegen
+			$data['values']['success'] = 0;
+			$data['values']['message'] = "Spiele konnten nicht geladen werden.";
+			
+			//Versuche Spiele abzurufen
+			if ( $this->Game->getAll() ){
+				$data['values']['success'] = 1;
+				$data['values']['message'] = "Spiele geladen.";
+				$data['values']['output'] = "select";
+				$data['values']['options'] = $this->Game->results;
+			}
 			
 			//Rückgabe via XML
 			$this->load->view('xml', $data);

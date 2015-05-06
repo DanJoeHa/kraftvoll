@@ -132,6 +132,31 @@
 			
 		}
 		
+		public function getAll(){
+			
+			//Daten aus DB abfragen
+			$query = $this->db->select('id, name');				// SELECT id, name
+			$query = $this->db->from('game');					// FROM game
+			$query = $this->db->get();							// do it
+			
+			//Prüfe, ob Spiele gefunden wurden
+			if( $query->num_rows() > 0 ){
+				
+				//Daten in Objekt speichern
+				foreach( $query->result() as $result ){
+					$this->results[ 'option' . $result->id ]['id'] = $result->id;
+					$this->results[ 'option' . $result->id ]['name'] = $result->name;
+				}
+				
+				//Success
+				return true;
+				
+			}
+			
+			//Fehler
+			return false;
+		}
+		
 	}
 	
 ?>

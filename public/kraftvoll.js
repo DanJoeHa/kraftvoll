@@ -123,29 +123,44 @@ function changePageTo( target ){
 			//Success
 			if( $(response).find('success').text() == '1' ){
 				
-				//Rückgabe-Html vorbereiten
-				var output = "";
-				
-				//Tabellen-Ausgabe
-				$( response ).find( 'row' ).each( function(){
-						
-						//Zeile beginnen
-						output += "<tr>";
-						
-						$( this ).find( 'cell' ).each( function(){
+				//Ausgabe als Tabelle
+				if( $(response).find('output').text() == 'table' ){
+					//Rückgabe-Html vorbereiten
+					var output = "";
+					
+					//Tabellen-Ausgabe
+					$( response ).find( 'row' ).each( function(){
 							
-							//Zellen hinzufügen
-							output += "<td>" + $( this ).text() + "</td>";
+							//Zeile beginnen
+							output += "<tr>";
 							
-						});
-						
-						//Zeile beenden
-						output += "</tr>";
-						
-				});
+							$( this ).find( 'cell' ).each( function(){
+								
+								//Zellen hinzufügen
+								output += "<td>" + $( this ).text() + "</td>";
+								
+							});
+							
+							//Zeile beenden
+							output += "</tr>";
+							
+					});
+					
+					//Html ausgeben
+					$( target ).find('tbody').html( output );	
+				}
 				
-				//Html ausgeben
-				$( target ).find('tbody').html( output );
+				//Ausgabe als Optionsliste
+				if( $( response ).find('output').text() == 'select' ){
+					
+					$( response ).find( 'options' ).each(function( ){
+						
+						//Optionen einfügen
+						$( target ).find( 'select' ).append( new Option( $( this ).find('name').text(), $( this ).find('id').text() ) );
+					});
+					
+				}
+				
 			
 			//Fail
 			}else{

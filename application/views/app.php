@@ -164,20 +164,31 @@
 				</p>
 			</article>
 			
-			<article id="games" >
+			<article id="games" data-onload="services/getgames/" >
 				<h1>Spiele</h1>
 				<p>
-					
+					<table>
+						<thead>
+							<tr>
+								<td>Name</td>
+								<td>Einheit</td>
+								<td>Sortierung</td>
+							</tr>
+						</thead>
+						<tbody>
+							
+						</tbody>
+					</table>
 				</p>
 			</article>
 			
 			<article id="newgame" >
 				<h1>Spiel anlegen</h1>
 				<p>
-					<form action="games/new/" method="post">
+					<form action="services/creategame/" method="post">
 						<label for="spielname">Spielname:</label>
 						<input type="text" id="spielname" name="spielname" maxlength=25 required autofocus />
-						<label for="wertungsgrundlage">Wertungsgrundlage:</label>
+						<label for="wertungsgrundlage">Einheit:</label>
 						<select id="wertungsgrundlage" name="wertungsgrundlage" required>
 							<option></option>
 							<option>Zeit</option>
@@ -267,9 +278,11 @@
 				<p>
 					<table>
 						<thead>
-							<td>Userid</td>
-							<td>Name</td>
-							<td>Vorname</td>
+							<tr>
+								<td>Userid</td>
+								<td>Name</td>
+								<td>Vorname</td>
+							</tr>
 						</thead>
 						<tbody>
 							

@@ -6,7 +6,8 @@ $('form').submit(function(e){
 	//Submit unterbinden
 	e.preventDefault();
 	
-	//Button austauschen
+	//Anzeige Loader
+	$('#loader').fadeIn();
 	
 	
 	//Ziel-Adresse und Formulardaten holen
@@ -58,6 +59,9 @@ $('form').submit(function(e){
 			$('#message').removeClass('invisible success').addClass('visible failure').text( $(response).find('message').text() );
 			
 		}
+		
+		//Loader ausblenden
+		$('#loader').fadeOut();
 		
 	});
 	

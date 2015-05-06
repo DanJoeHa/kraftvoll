@@ -127,6 +127,42 @@
 			$this->load->view('xml', $data);
 		}
 		
+		public function creategame(){
+			$this->load->model('Game');
+			
+			//hole POST-Daten
+			$name = $this->input->post('spielname');
+			$wertungsgrundlage = $this->input->post('wertungsgrundlage');
+			$wertungsfolge = $this->input->post('wertungsfolge');
+			$beschreibung = $this->input->post('spielbeschreibung');
+			
+			//Rückgabedaten Defaultwerte festlegen
+			$data['values']['success'] = 0;
+			$data['values']['message'] = "Spiel konnte nicht erstellt werden.";
+			
+			// versuche Spiel zu erstellen
+			if( $this->Game->create( $name, $wertungsgrundlage, $wertungsfolge, $beschreibung ) ){
+				$data['values']['success'] = 1;
+				$data['values']['message'] = "Spiel erfolgreich erstellt.";
+			}
+			
+			//Rückgabe via XML
+			$this->load->view('xml', $data);
+		}
+		
+		public function getgames(){
+			
+			//Beispieldaten
+			$data['values']['success'] = 1;
+			$data['values']['row1']['cell1'] = "Kletterturm";
+			$data['values']['row1']['cell2'] = "Zeit";
+			$data['values']['row1']['cell3'] = "DESC";
+			
+			//Rückgabe via XML
+			$this->load->view('xml', $data);
+			
+		}
+		
 		public function event(){
 			$this->load->model('Event');
 			

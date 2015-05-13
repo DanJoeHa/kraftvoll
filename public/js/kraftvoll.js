@@ -6,11 +6,12 @@ $(document).foundation();
 
 /* Formular absenden via AJAX */
 $('form').submit(function(e){
+	
 	//Submit unterbinden
 	e.preventDefault();
 	
 	//Anzeige Loader
-	$('#loader').fadeIn();
+	$('#loader').show();
 	
 	
 	//Ziel-Adresse und Formulardaten holen
@@ -37,7 +38,7 @@ $('form').submit(function(e){
 			}
 			
 			//Formular leeren
-			$( modul ).find('form')[0].reset();
+			$( '#' + modul ).find('form').get(0).reset();
 			
 			// Erfolgsmeldung an User geben
 			$('#message').removeClass('invisible failure').addClass('visible success').text( $(response).find('message').text() );
@@ -50,24 +51,9 @@ $('form').submit(function(e){
 		}
 		
 		//Loader ausblenden
-		$('#loader').fadeOut();
+		$('#loader').hide();
 		
 	});
-	
-});
-
-/* Navigationsmenü einblenden */
-$('#navicon').click(function(e){
-	
-	//Default Link unterbinden
-	e.preventDefault();
-	
-	//prüfe, ob Navigationsmenü eingeblendet ist
-	if( $('nav ul').hasClass('visible') ){
-		$('nav ul').removeClass('visible').slideUp();
-	}else{
-		$('nav ul').slideDown().addClass('visible');
-	}
 	
 });
 
@@ -77,11 +63,11 @@ $('nav ul li a').click(function(e){
 	//Default Link unterbinden
 	e.preventDefault();
 	
-	//Seite wechseln
-	changePageTo( $(this).attr('href') );
+	//Ziel herausfinden
+	var target = $(this).attr('href');
 	
-	//Navigationsmenü ausblenden
-	$('nav ul').removeClass('visible').fadeOut();
+	//Seite wechseln, wenn valide ID angegeben
+	if( target != '#' ) changePageTo( target );
 	
 });
 

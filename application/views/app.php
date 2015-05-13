@@ -22,28 +22,80 @@
 	<body>
 		
 		<!-- Page Header -->
-		<header data-role="header">
-			<nav>
-				<a href="#" id="navicon" class="invisible">&equiv;</a>
-				<ul class="invisible">
-					<li class="admin leitung station registration monitor invisible"><a href="#welcome" data-transition="slide">Home</a></li>
-					<li class="admin leitung station invisible"><a href="#description" data-transition="slide">Spielbeschreibung</a></li>
-					<li class="admin leitung station invisible"><a href="#teamwertung" data-transition="slide">Wertung eintragen</a></li>
-					<li class="admin leitung station invisible"><a href="#gametable" data-transition="slide">Spieltabelle</a></li>
-					<li class="admin leitung monitor invisible"><a href="#eventtable" data-transition="slide">Top-Wertungen</a></li>
-					<li class="admin leitung registration invisible"><a href="#teams" data-transition="slide">Teams</a></li>
-					<li class="admin leitung registration invisible"><a href="#newteam" data-transition="slide">Team registrieren</a></li>
-					<li class="admin leitung invisible"><a href="#games" data-transition="slide">Spiele</a></li>
-					<li class="admin leitung invisible"><a href="#newgame" data-transition="slide">Spiel hinzufügen</a></li>
-					<li class="admin leitung invisible"><a href="#events" data-transition="slide">Events</a></li>
-					<li class="admin leitung invisible"><a href="#newevent" data-transition="slide">Event hinzufügen</a></li>
-					<li class="admin leitung invisible"><a href="#user" data-transition="slide">Benutzer</a></li>
-					<li class="admin leitung invisible"><a href="#newuser" data-transition="slide">Benutzer hinzufügen</a></li>
+		<header>
+			
+			<nav class="top-bar" data-topbar role="navigation" data-options="is_hover: false">
+				<ul class="title-area">
+					<li class="name">
+						<h1>
+							<a href="#welcome">
+								Kraftvoll
+								<img src="public/img/loading.gif" id="loader" />
+							</a>
+						</h1>
+					</li>
+					<li class="toggle-topbar menu-icon">
+						<a href="#"><span></span></a>
+					</li>
 				</ul>
-				<select id="eventchooser" class="invisible admin leitung">
+
+				<section class="top-bar-section">
+
+					<!-- Topbar Content left -->
+					<ul class="left">
+						<li class="admin leitung station registration monitor invisible"><a href="#welcome">Home</a></li>
+						<li class="admin leitung station invisible"><a href="#description">Spielbeschreibung</a></li>
+						<li class="admin leitung station invisible"><a href="#teamwertung">Wertung eintragen</a></li>
+						<li class="admin leitung station invisible"><a href="#gametable">Spieltabelle</a></li>
+						<li class="admin leitung monitor invisible"><a href="#eventtable">Top-Wertungen</a></li>
+						<li class="has-dropdown admin leitung registration invisible">
+							<a href="#teams">Teams</a>
+							
+							<ul class="dropdown">
+								<li class="admin leitung registration  invisible"><a href="#newteam">Team registrieren</a></li>
+							</ul>
+						</li>
+						
+						<li class="has-dropdown admin leitung invisible">
+							<a href="#games">Spiele</a>
+							
+							<ul class="dropdown">
+								<li class="admin leitung invisible"><a href="#newgame">Spiel hinzufügen</a></li>
+							</ul>
+						</li>
+						
+						<li class="has-dropdown admin leitung invisible">
+							<a href="#events">Events</a>
+							
+							<ul class="dropdown">
+								<li class="admin leitung invisible"><a href="#newevent">Event hinzufügen</a></li>
+							</ul>
+						</li>
+						
+						<li class="has-dropdown admin leitung invisible">
+							<a href="#user">Benutzer</a>
+							
+							<ul class="dropdown">
+								<li class="admin leitung invisible"><a href="#newuser">Benutzer hinzufügen</a></li>
+							</ul>
+						</li>
+						
+						<li class="admin leitung station registration monitor invisible"><a href="#login">Logout</a></li>
+					</ul>
 					
-				</select>
-				<img src="public/img/loading.gif" id="loader" />
+					<!-- Topbar Content right -->
+					<ul class="right">
+						<li class="has-form">
+							<div class="row collapse">
+								<div class="small-12 columns">
+									<select id="eventchooser" class="admin leitung invisible">
+										<option>Test</option>						
+									</select>
+								</div>
+							</div>		
+						</li>
+					</ul>
+				</section>
 			</nav>
 		
 			<div id="headerimg"> &nbsp; </div>
@@ -61,7 +113,7 @@
 						<input type="text" id="username" name="username" maxlength=25 required autofocus />
 						<label for="password">Passwort:</label>
 						<input type="password" id="password" name="password" required />
-						<input type="submit" value="anmelden" />
+						<input type="submit" value="anmelden" class="button" />
 					</form>
 				</p>				
 			</article>
@@ -88,7 +140,7 @@
 						<input type="number" name="team" id="team" min=1 required autofocus />
 						<label for="wertung" id="unit">Wertung:</label>
 						<input type="number" name="wertung" id="wertung" required />
-						<input type="submit" value="speichern" />
+						<input type="submit" value="speichern" class="button" />
 					</form>
 				</p>
 			</article>
@@ -145,7 +197,7 @@
 						<input type="text" maxlength=50 name="teamleader" id="teamleader" required />
 						<label for="teammember">Team-Mitglieder:</label>
 						<textarea id="teammember" name="teammember" required></textarea>
-						<input type="submit" value="speichern" />
+						<input type="submit" value="speichern" class="button" />
 					</form>
 				</p>
 			</article>
@@ -162,7 +214,7 @@
 						<input type="text" maxlength=50 name="editteam_teamleader" id="editteam_teamleader" required />
 						<label for="editteam_teammember">Team-Mitglieder:</label>
 						<textarea id="editteam_teammember" name="editteam_teammember" required></textarea>
-						<input type="submit" value="speichern" />
+						<input type="submit" value="speichern" class="button" />
 					</form>
 				</p>
 			</article>
@@ -205,7 +257,7 @@
 						</select>
 						<label for="spielbeschreibung">Spielbeschreibung:</label>
 						<textarea id="spielbeschreibung" name="spielbeschreibung"></textarea>
-						<input type="submit" value="speichern" />
+						<input type="submit" value="speichern" class="button" />
 					</form>
 				</p>
 			</article>
@@ -232,7 +284,7 @@
 						</select>
 						<label for="editgame_spielbeschreibung">Spielbeschreibung:</label>
 						<textarea id="editgame_spielbeschreibung" name="editgame_spielbeschreibung"></textarea>
-						<input type="submit" value="speichern" />
+						<input type="submit" value="speichern" class="button" />
 					</form>
 				</p>
 			</article>
@@ -253,7 +305,7 @@
 						<label for="eventspiele">Spiele wählen:</label>
 						<select id="eventspiele" name="eventspiele[]" multiple>
 						</select>
-						<input type="submit" value="speichern" />
+						<input type="submit" value="speichern" class="button" />
 					</form>
 				</p>
 			</article>
@@ -270,7 +322,7 @@
 						<select id="editevent_eventspiele" name="editevent_eventspiele" multiple>
 							<option></option>
 						</select>
-						<input type="submit" value="speichern" />
+						<input type="submit" value="speichern" class="button" />
 					</form>
 				</p>
 			</article>
@@ -311,7 +363,7 @@
 							<option value=4>Station</option>
 							<option value=5>Monitor</option>
 						</select>
-						<input type="submit" value="speichern" />
+						<input type="submit" value="speichern" class="button" />
 					</form>
 				</p>
 			</article>
@@ -337,7 +389,7 @@
 							<option value=4>Station</option>
 							<option value=5>Monitor</option>
 						</select>
-						<input type="submit" value="speichern" />
+						<input type="submit" value="speichern" class="button" />
 					</form>
 				</p>
 				

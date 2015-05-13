@@ -1,11 +1,13 @@
 CACHE MANIFEST
-# 07.05.2015 - 18:34
+# 13.05.2015 - 10:01
 
 # Cached files
 CACHE:
 ./public/img/loading.gif
 ./public/img/banner_small.png
-./public/jquery-2.1.3.min.js
+./public/js/foundation.min.js
+./public/js/vendor/jquery.js
+./public/js/vendor/modernizr.js
 
 
 # Always loaded files, * for AJAX-Calls

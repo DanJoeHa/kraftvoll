@@ -1,6 +1,9 @@
 /**
  * @author Johannes Haag
  */
+/* Foundation Framework aktivieren */
+$(document).foundation();
+
 /* Formular absenden via AJAX */
 $('form').submit(function(e){
 	//Submit unterbinden

@@ -12,7 +12,10 @@
 		<meta name="author" content="Johannes Haag" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
-		<link rel="stylesheet" href="public/kraftvoll.css" />
+		
+		<link rel="stylesheet" href="public/css/foundation.css" />
+    	<script src="public/js/vendor/modernizr.js"></script>
+		<link rel="stylesheet" href="public/css/kraftvoll.css" />
 		
 	</head>
 
@@ -348,7 +351,8 @@
 		</footer>
 		
 		<!-- JavaScript -->
-		<script src="public/jquery-2.1.3.min.js"></script>
-		<script src="public/kraftvoll.js"></script>
+		<script src="public/js/vendor/jquery.js"></script>
+		<script src="public/js/foundation.min.js"></script>
+		<script src="public/js/kraftvoll.js"></script>
 	</body>
 </html>

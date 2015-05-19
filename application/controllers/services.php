@@ -55,14 +55,26 @@
 							
 						}
 						
+						// prüfe Rolle auf Admin oder Leitung
+						if( $this->User->getRole()->getName() == "Admin" || $this->User->getRole()->getName() == "Leitung" ){
+							
+							//alle Events holen
+							$data['values']['events']['event0']['id'] = '1';
+							$data['values']['events']['event0']['date'] = '18.07.2015';
+							$data['values']['events']['event1']['id'] = '2';
+							$data['values']['events']['event1']['date'] = '15.07.2015';
+							
+						}
+						
 					}
 					
 					// Erfolgreich
 					if( $success ){
 						$data['values']['success'] = 1;
-						$data['values']['role'] = $this->User->getRole()->getName();
-						$data['values']['activeevent']['id'] = $this->Event->getId();
-						$data['values']['activeevent']['description'] = $this->Event->getDescription();
+						$data['values']['user']['id'] = $this->User->getId();
+						$data['values']['user']['role'] = $this->User->getRole()->getName();
+						$data['values']['events']['active']['id'] = $this->Event->getId();
+						$data['values']['events']['active']['description'] = $this->Event->getDescription();
 					}
 				}
 				
@@ -106,11 +118,15 @@
 		}
 		
 		public function getuser(){
-			
+			$this->load->model('User');
+			$this->load->model('Role');
 			
 			//Beispieldaten
 			$data['values']['success'] = 1;
 			$data['values']['output'] = "table";
+			
+			$data['values'] = $this->User->getAll();
+			
 			$data['values']['row1']['cell1'] = "adm_jhaag";
 			$data['values']['row1']['cell2'] = "Haag";
 			$data['values']['row1']['cell3'] = "Johannes";

@@ -9,6 +9,8 @@
 		private $password = "";
 		private $role = null;
 		
+		public $results = array();
+		
 		public function __construct(){
 			$this->load->database();
 		}
@@ -94,6 +96,36 @@
 			//Fail
 			return false;
 			
+		}
+		
+		public function getAll(){
+			
+			//Daten aus DB abfragen
+			$query = $this->db->select();					// SELECT *
+			$query = $this->db->from('user');				// FROM user
+			$query = $this->db->get();						// do it
+			
+			//Prüfe, ob User gefunden wurden
+			if( $query->num_rows() > 0 ){
+				
+				// alle User in Array zur Rückgabe speichern
+				$x = 0;
+				foreach( $query->result() as $user ){
+					$key = 'user' . $x;
+					$this->results[$key] = $user;
+					$this->Role->load( $user->role );
+					$this->results[$key]['role'] = $this->Role->getName();
+					$x++;
+				}
+				
+				print_r( $this->results );
+				
+				//Success
+				return true;	
+			}
+			
+			//Fail
+			return false;
 		}
 		
 		public function getPassword(){

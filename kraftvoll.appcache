@@ -8,7 +8,7 @@ CACHE:
 ./public/js/foundation.min.js
 ./public/js/vendor/jquery.js
 ./public/js/vendor/modernizr.js
-
+./public/css/foundation.css
 
 # Always loaded files, * for AJAX-Calls
 NETWORK:

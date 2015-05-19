@@ -1,6 +1,10 @@
 /**
  * 	@autor Johannes Haag
  */
+body{
+	background-color: #000000;
+}
+
 #loader{
 	display: none;
 }
@@ -12,7 +16,12 @@
 	
 	background-image: url('../img/banner_small.png');
 	background-size: cover;
-	z-index: -1;
+}
+
+#wrapper{
+	padding: 2%;
+	
+	background-color: #ffffff;
 }
 
 article {
@@ -22,8 +31,7 @@ article {
 }
 
 footer {
-	padding: 1%;
-	height: 2.5rem;
+	padding: 2%;
 	
 	font-size: .8rem;
 	color: #ffffff;

@@ -4,6 +4,8 @@
 /* Foundation Framework aktivieren */
 $(document).foundation();
 
+/* TODO: Anzeige Login nur, wenn User nicht bereits eingeloggt */
+
 /* Formular absenden via AJAX */
 $('form').submit(function(e){
 	
@@ -12,8 +14,7 @@ $('form').submit(function(e){
 	
 	//Anzeige Loader
 	$('#loader').show();
-	
-	
+		
 	//Ziel-Adresse und Formulardaten holen
 	var url = $(this).attr('action');
 	var data = $(this).serialize();
@@ -23,7 +24,16 @@ $('form').submit(function(e){
 	$.ajax({
 		url: url,
 		method: 'post',
-		data: data
+		data: data,
+		error: function(response){
+			
+			// Ausgabe Fehlermeldung
+			$('#message').find('p').text( 'Es ist ein Kommunikationsfehler aufgetreten: ERROR' + response.status );
+			$('#message').removeClass('invisible success').addClass('visible warning');
+			
+			//Loader ausblenden
+			$('#loader').hide();
+		}
 	}).done(function(response){
 		
 		//Success
@@ -41,12 +51,15 @@ $('form').submit(function(e){
 			$( '#' + modul ).find('form').get(0).reset();
 			
 			// Erfolgsmeldung an User geben
-			$('#message').removeClass('invisible failure').addClass('visible success').text( $(response).find('message').text() );
+			$('#message').find('p').text( $(response).find('message').text() );
+			$('#message').removeClass('invisible warning').addClass('visible success');
+			
 			
 		}else{
 			
 			// Fehlermeldung an User geben
-			$('#message').removeClass('invisible success').addClass('visible failure').text( $(response).find('message').text() );
+			$('#message').find('p').text( $(response).find('message').text() );
+			$('#message').removeClass('invisible success').addClass('visible warning');
 			
 		}
 		
@@ -92,7 +105,16 @@ function changePageTo( target ){
 		//Daten via AJAX anfragen
 		$.ajax({
 			url: $( target ).attr('data-onload'),
-			method: 'post'
+			method: 'post',
+			error: function(response){
+				
+				// Ausgabe Fehlermeldung
+				$('#message').find('p').text( 'Es ist ein Kommunikationsfehler aufgetreten: ERROR' + response.status );
+				$('#message').removeClass('invisible success').addClass('visible warning');
+				
+				//Loader ausblenden
+				$('#loader').hide();
+			}
 		}).done(function(response){
 			
 			//Success
@@ -144,7 +166,9 @@ function changePageTo( target ){
 			}else{
 				
 				// Fehlermeldung an User geben
-				$('#message').removeClass('invisible success').addClass('visible failure').text( $(response).find('message').text() );
+				$('#message').find('p').text( $(response).find('message').text() );
+				$('#message').removeClass('invisible success').addClass('visible warning');
+
 			}
 			
 			//Loader ausblenden
@@ -155,13 +179,34 @@ function changePageTo( target ){
 	
 } 
 
+/* Logout */
+$('#logout').click(function(){
+	
+	// User ausloggen
+	localStorage.removeItem( 'userid' );
+	
+	//Navigationsmenu ausblenden
+	$('.menu-icon').removeClass('visible').addClass('invisible');
+	$('.left li, .right li').removeClass('visible').addClass('invisible');
+	
+	//Homelink zurücksetzen
+	$('#homelink').attr('href', '#login');
+	
+});
+
 function process_response_login( response ){
+	
+	// Userdaten speichern
+	localStorage.setItem('userid', $( response ).find('user').find('id').text() );
 	
 	//Startseite anzeigen
 	changePageTo('#welcome');
 	
+	//Homelink auf Startseite ändern
+	$('#homelink').attr('href', '#welcome');
+	
 	//Navigationsmenü erstellen
-	$('#navicon').removeClass('invisible').addClass('visible');
+	$('.menu-icon').removeClass('invisible').addClass('visible');
 	var role = $(response).find('role').text();
 	$( '.' + role.toLowerCase() ).removeClass('invisible').addClass('visible');
 	
@@ -173,14 +218,18 @@ function process_response_login( response ){
 	var desc = $( response ).find('game').find('description').text();
 	$('#description').find('p').html( desc );
 	
+	//Events einfügen
+	$( response ).find('events').find('event').each( function(){
+		
+		$('#eventchooser').append( new Option( $( this ).find('date').text(), $( this ).find('id').text() ) );
+		
+	});
+	
 	//Aktives Event setzen
-	$( '#eventchooser' ).append( $('<option>', {
-		value: 1,
-		text: '17.08.2015'
-	}));
+	$( '#eventchooser' ).val( $( response).find('events').find('active').find('id').text() ).prop('selected', 'selected');
 	
 	//Aktives Event Beschreibung setzen
-	desc = $( response ).find('activeevent').find('description').text();
+	desc = $( response ).find('events').find('active').find('description').text();
 	$( '#welcome' ).find('p').html( desc );
 	
 }

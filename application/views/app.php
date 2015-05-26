@@ -141,8 +141,10 @@
 					<h1>Wertung eintragen</h1>
 					<p>
 						<form action="teamwertung" method="post">
+							<label for="station" class="invisible leitung admin">Stations-Nr.:</label>
+							<select id="station" name="station" class="invisible leitung admin" required /></select>
 							<label for="team">Team-Nr.:</label>
-							<input type="number" name="team" id="team" min=1 required autofocus />
+							<input type="number" name="team" id="team" min=1 required />
 							<label for="wertung" id="unit">Wertung:</label>
 							<input type="number" name="wertung" id="wertung" required />
 							<input type="submit" value="speichern" class="button" />
@@ -197,7 +199,7 @@
 					<p>
 						<form action="services/createteam/" method="post">
 							<label for="teamname">Teamname:</label>
-							<input type="text" id="teamname" name="teamname" maxlength=25 required autofocus />
+							<input type="text" id="teamname" name="teamname" maxlength=25 required />
 							<label for="teamleader">Teamleader:</label>
 							<input type="text" maxlength=50 name="teamleader" id="teamleader" required />
 							<label for="teammember">Team-Mitglieder:</label>
@@ -214,7 +216,7 @@
 							<label for="editteam_teamnr">Team-Nr.</label>
 							<input type="number" id="editteam_teamnr" name="editteam_teamnr" value="" disabled />
 							<label for="editteam_teamname">Teamname:</label>
-							<input type="text" id="editteam_teamname" name="editteam_teamname" maxlength=25 required autofocus />
+							<input type="text" id="editteam_teamname" name="editteam_teamname" maxlength=25 required />
 							<label for="editteam_teamleader">Teamleader:</label>
 							<input type="text" maxlength=50 name="editteam_teamleader" id="editteam_teamleader" required />
 							<label for="editteam_teammember">Team-Mitglieder:</label>
@@ -247,7 +249,7 @@
 					<p>
 						<form action="services/creategame/" method="post">
 							<label for="spielname">Spielname:</label>
-							<input type="text" id="spielname" name="spielname" maxlength=25 required autofocus />
+							<input type="text" id="spielname" name="spielname" maxlength=25 required />
 							<label for="wertungsgrundlage">Einheit:</label>
 							<select id="wertungsgrundlage" name="wertungsgrundlage" required>
 								<option></option>
@@ -274,7 +276,7 @@
 							<label for="editgame_spielnr">Spiel-Nr.:</label>
 							<input type="number" id="editgame_spielnr" name="editgame_spielnr" disabled value="" />
 							<label for="editgame_spielname">Spielname:</label>
-							<input type="text" id="editgame_spielname" name="editgame_spielname" maxlength=25 required autofocus />
+							<input type="text" id="editgame_spielname" name="editgame_spielname" maxlength=25 required />
 							<label for="editgame_wertungsgrundlage">Wertungsgrundlage:</label>
 							<select id="editgame_wertungsgrundlage" name="editgame_wertungsgrundlage" required>
 								<option></option>
@@ -306,7 +308,7 @@
 					<p>
 						<form action="services/createevent/" method="post">
 							<label for="eventdatum">Datum:</label>
-							<input type="date" id="eventdatum" name="eventdatum" required autofocus />
+							<input type="date" id="eventdatum" name="eventdatum" required />
 							<label for="eventspiele">Spiele wählen:</label>
 							<select id="eventspiele" name="eventspiele[]" multiple>
 							</select>
@@ -322,7 +324,7 @@
 							<label for="editevent_eventid">Event-ID:</label>
 							<input type="number" id="editevent_eventid" name="editevent_eventid" value="" disabled />
 							<label for="editevent_eventdatum">Datum:</label>
-							<input type="date" id="editevent_eventdatum" name="editevent_eventdatum" required autofocus />
+							<input type="date" id="editevent_eventdatum" name="editevent_eventdatum" required />
 							<label for="editevent_eventspiele">Spiele wählen:</label>
 							<select id="editevent_eventspiele" name="editevent_eventspiele" multiple>
 								<option></option>
@@ -355,7 +357,7 @@
 					<p>
 						<form action="services/createuser/" method="post">
 							<label for="newuser_username">Benutzername:</label>
-							<input type="text" id="newuser_username" name="newuser_username" maxlength=25 required autofocus />
+							<input type="text" id="newuser_username" name="newuser_username" maxlength=25 required />
 							<label for="newuser_password">Passwort:</label>
 							<input type="password" name="newuser_password" id="newuser_password" maxlength=50 required />
 							<label for="newuser_password_wdh">Passwort (Wdh.):</label>
@@ -381,7 +383,7 @@
 							<label for="edituser_userid">User-ID</label>
 							<input type="number" id="edituser_userid" name="edituser_userid" value="" disabled />
 							<label for="edituser_username">Benutzername:</label>
-							<input type="text" id="edituser_username" name="edituser_username" maxlength=25 required autofocus />
+							<input type="text" id="edituser_username" name="edituser_username" maxlength=25 required />
 							<label for="edituser_password">Passwort:</label>
 							<input type="password" name="edituser_password" id="edituser_password" maxlength=50 />
 							<label for="edituser_password_wdh">Passwort (Wdh.):</label>

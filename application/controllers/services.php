@@ -44,9 +44,9 @@
 									// da Station, zugeordnetes Spiel laden
 									$this->load->model('Game');
 									$this->Game->load( $user['gameid'] );
-									$data['values']['game']['description'] = $this->Game->getDescription();
-									$data['values']['game']['id'] = $this->Game->getId();
-									$data['values']['game']['unit'] = $this->Game->getUnit();
+									$data['values']['games']['active']['description'] = $this->Game->getDescription();
+									$data['values']['games']['active']['id'] = $this->Game->getId();
+									$data['values']['games']['active']['unit'] = $this->Game->getUnit();
 										
 									$success = 1;									
 									break;
@@ -61,8 +61,20 @@
 							//alle Events holen
 							$data['values']['events']['event0']['id'] = '1';
 							$data['values']['events']['event0']['date'] = '18.07.2015';
+							$data['values']['events']['event0']['description'] = 'Eventbeschreibung Event 1';
 							$data['values']['events']['event1']['id'] = '2';
 							$data['values']['events']['event1']['date'] = '15.07.2015';
+							$data['values']['events']['event1']['description'] = 'Eventbeschreibung Event 2';
+							
+							//alle Games holen
+							$data['values']['games']['game0']['id'] = '1';
+							$data['values']['games']['game0']['name'] = 'Test1';
+							$data['values']['games']['game0']['unit'] = 'Zeit';
+							$data['values']['games']['game0']['description'] = 'Spielbeschreibung Spiel 1';
+							$data['values']['games']['game1']['id'] = '2';
+							$data['values']['games']['game1']['name'] = 'Test2';
+							$data['values']['games']['game1']['unit'] = 'Anzahl';
+							$data['values']['games']['game1']['description'] = 'Spielbeschreibung Spiel 2';
 							
 						}
 						

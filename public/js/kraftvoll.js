@@ -36,10 +36,11 @@ $('form').submit(function(e){
 		}
 	}).done(function(response){
 		
-		//Success
+		// Success
+		var msg = $(response).find('message').text();
 		if( $(response).find('success').text() == '1' ){
 			
-			//wenn Login-Form
+			// wenn Login-Form
 			if( modul == 'login' ){
 				
 				// Antwort verarbeiten
@@ -47,18 +48,19 @@ $('form').submit(function(e){
 				
 			}
 			
-			//Formular leeren
+			// Formular leeren
 			$( '#' + modul ).find('form').get(0).reset();
 			
 			// Erfolgsmeldung an User geben
-			$('#message').find('p').text( $(response).find('message').text() );
-			$('#message').removeClass('invisible warning').addClass('visible success');
-			
+			if( msg != "" ){
+				$('#message').find('p').text( msg );
+				$('#message').removeClass('invisible warning').addClass('visible success');	
+			}		
 			
 		}else{
 			
 			// Fehlermeldung an User geben
-			$('#message').find('p').text( $(response).find('message').text() );
+			$('#message').find('p').text( msg );
 			$('#message').removeClass('invisible success').addClass('visible warning');
 			
 		}
@@ -179,6 +181,20 @@ function changePageTo( target ){
 	
 } 
 
+/* Auswahl Station (ADMIN/LEITUNG) */
+$('#station').change(function(){
+	
+	// gewähltes Spiel holen
+	var active = $(this).find(':selected');
+	
+	// Spielbeschreibung ändern
+	$('#description').find('p').html( $(active).attr('data-game-description') );
+	
+	// Spieleinheit ändern
+	$('#unit').html( $(active).attr('data-game-unit') + ':' );
+	
+});
+
 /* Logout */
 $('#logout').click(function(){
 	
@@ -199,6 +215,8 @@ function process_response_login( response ){
 	// Userdaten speichern
 	localStorage.setItem('userid', $( response ).find('user').find('id').text() );
 	
+	
+	
 	//Startseite anzeigen
 	changePageTo('#welcome');
 	
@@ -210,19 +228,31 @@ function process_response_login( response ){
 	var role = $(response).find('role').text();
 	$( '.' + role.toLowerCase() ).removeClass('invisible').addClass('visible');
 	
+	
+	
+	//Spiele einfügen
+	$( response ).find('games').find('game').each( function(){
+		$('#station').append( 
+			'<option value="' + $( this ).find('id').text() + '" data-game-description="' + $( this ).find('description').text() + '" data-game-unit="' + $( this ).find('unit').text() + '">' + $( this ).find('name').text() + '</option>' 
+		); 
+	});
+	
+	//Aktives Spiel setzen
+	$( '#station' ).val( $( response ).find('games').find('active').find('id').text() ).prop('selected', 'selected');
+	
+	//Aktives Spiel Beschreibung setzen
+	desc = $( response ).find('games').find('active').find('description').text();
+	$( '#description' ).find('p').html( desc );
+	
 	//Spiel-Einheit setzen
-	var unit = $(response).find('game').find('unit').text();
+	var unit = $(response).find('games').find('active').find('unit').text();
 	$('#unit').text( unit + ":");
 	
-	//Spiel-Beschreibung setzen
-	var desc = $( response ).find('game').find('description').text();
-	$('#description').find('p').html( desc );
+	
 	
 	//Events einfügen
 	$( response ).find('events').find('event').each( function(){
-		
 		$('#eventchooser').append( new Option( $( this ).find('date').text(), $( this ).find('id').text() ) );
-		
 	});
 	
 	//Aktives Event setzen

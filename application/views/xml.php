@@ -1,5 +1,5 @@
 <?php
-
+	
 	function to_xml(SimpleXMLElement $object, array $data) {
 		foreach ($data as $key => $value) {
 			$key = preg_replace("/[0-9]/", "", $key);

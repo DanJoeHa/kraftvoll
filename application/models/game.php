@@ -168,6 +168,10 @@
 		public function getUnit(){
 			return $this->measurement;
 		}		
+		
+		public function getName(){
+			return $this->name;
+		}
 	}
 	
 ?>

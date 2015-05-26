@@ -13,8 +13,15 @@
 		public $teams = array();
 		public $results = array();
 		
-		public function __construct(){
+		/**
+		 * Erstellt ein neues Objekt.
+		 */
+		public function __construct( $id = 0, $datum = "", $description = ""){
 			$this->load->database();
+			
+			$this->id = $id;
+			$this->datum = $datum;
+			$this->description = $description;
 		}
 		
 		/**
@@ -38,6 +45,33 @@
 				//Success	
 				return true;
 			} 
+			
+			//Fail
+			return false;
+			
+		}
+		
+		/**
+		 * Lade alle Events.
+		 */
+		public function loadAll(){
+			
+			//alle Eventeinträge aus DB holen
+			$query = $this->db->select();
+			$query = $this->db->from('event');
+			$query = $this->db->get();
+			
+			//Prüfe, ob Events gefunden wurden
+			if( $query->num_rows() > 0 ){
+				
+				//Ergebnisse speichern
+				foreach( $query->result() as $row ){
+					$this->results[] = new Event( $row->id, $row->date, $row->description );
+				}
+				
+				//Success
+				return true;	
+			}
 			
 			//Fail
 			return false;
@@ -395,6 +429,13 @@
 		 */
 		public function getDescription(){
 			return $this->description;
+		}
+		
+		/**
+		 * Gibt das Datum des aktiven Events zurück.
+		 */
+		public function getDate(){
+			return $this->datum;
 		}
 	}
 	

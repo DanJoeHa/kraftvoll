@@ -58,23 +58,32 @@
 						// prüfe Rolle auf Admin oder Leitung
 						if( $this->User->getRole()->getName() == "Admin" || $this->User->getRole()->getName() == "Leitung" ){
 							
-							//alle Events holen
-							$data['values']['events']['event0']['id'] = '1';
-							$data['values']['events']['event0']['date'] = '18.07.2015';
-							$data['values']['events']['event0']['description'] = 'Eventbeschreibung Event 1';
-							$data['values']['events']['event1']['id'] = '2';
-							$data['values']['events']['event1']['date'] = '15.07.2015';
-							$data['values']['events']['event1']['description'] = 'Eventbeschreibung Event 2';
+							// lade alle Events	
+							$this->Event->loadAll();
 							
-							//alle Games holen
-							$data['values']['games']['game0']['id'] = '1';
-							$data['values']['games']['game0']['name'] = 'Test1';
-							$data['values']['games']['game0']['unit'] = 'Zeit';
-							$data['values']['games']['game0']['description'] = 'Spielbeschreibung Spiel 1';
-							$data['values']['games']['game1']['id'] = '2';
-							$data['values']['games']['game1']['name'] = 'Test2';
-							$data['values']['games']['game1']['unit'] = 'Anzahl';
-							$data['values']['games']['game1']['description'] = 'Spielbeschreibung Spiel 2';
+							// gib die Events als Array in die XML Generation
+							$x = 0;	
+							foreach( $this->Event->results as $event ){
+								$data['values']['events']['event' . $x]['id'] = $event->getId();
+								$data['values']['events']['event' . $x]['date'] = $event->getDate();
+								$data['values']['events']['event' . $x]['description'] = $event->getDescription();
+								
+								$x++;
+							}
+							
+							//alle Games des aktiven Events in die XML Generation
+							$this->load->model('Game');
+							$this->Event->loadGames();
+							$x = 0;
+							foreach( $this->Event->games[ $this->Event->getId() ] as $game ){
+								$this->Game->load( $game );
+								$data['values']['games']['game' . $x]['id'] = $this->Game->getId();
+								$data['values']['games']['game' . $x]['name'] = $this->Game->getName();
+								$data['values']['games']['game' . $x]['unit'] = $this->Game->getUnit();
+								$data['values']['games']['game' . $x]['description'] = $this->Game->getDescription();	
+								
+								$x++;
+							}
 							
 						}
 						
@@ -240,6 +249,13 @@
 			//Rückgabe via XML
 			$this->load->view('xml', $data);
 			
+		}
+		
+		public function test(){
+			$this->load->model('Event');
+			
+			$this->Event->loadAll();
+			print_r( $this->Event->results );
 		}
 		
 		public function event(){

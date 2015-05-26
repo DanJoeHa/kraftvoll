@@ -141,7 +141,7 @@
 					<h1>Wertung eintragen</h1>
 					<p>
 						<form action="teamwertung" method="post">
-							<label for="station" class="invisible leitung admin">Stations-Nr.:</label>
+							<label for="station" class="invisible leitung admin">Station:</label>
 							<select id="station" name="station" class="invisible leitung admin" required /></select>
 							<label for="team">Team-Nr.:</label>
 							<input type="number" name="team" id="team" min=1 required />
